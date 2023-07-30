@@ -20,14 +20,16 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "baseUrl": ".",
-    "paths": {
-      "~app/*": ["src/app/*"],
-      "~pages/*": ["src/pages/*"],
-      "~widgets/*": ["src/widgets/*"],
-      // "~features/*": ["src/features/*"],
-      // "~entities/*": ["src/entities/*"],
-      // "~shared/*": ["src/shared/*"]
-    }
+    // "paths": {
+    //   "~app/*": ["src/app/*"],
+    //   "~pages/*": ["src/pages/*"],
+    //   "~widgets/*": ["src/widgets/*"],
+    //   // "~features/*": ["src/features/*"],
+    //   "~entities/*": ["src/entities/*"],
+    //   "~shared/*": ["src/shared/*"]
+    // },
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]

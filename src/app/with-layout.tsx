@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { Header } from "~widgets/header";
-import { Sidebar } from "~widgets/sidebar";
+import { Header } from "src/widgets/header";
+import { Sidebar } from "src/widgets/sidebar";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (

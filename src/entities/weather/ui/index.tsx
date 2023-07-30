@@ -1,3 +1,9 @@
+import MainData from "./main-data";
+
 export function Weather() {
-  return <div>Weather</div>;
+  return (
+    <div>
+      <MainData />
+    </div>
+  );
 }
