@@ -5,11 +5,9 @@ import "styled-components";
 declare module "styled-components" {
   export interface DefaultTheme {
     colors: {
-      yellow: string;
-      blue: string;
-      pink: string;
-      white: string;
-      black: string;
+      primary: string;
+      text: string;
     };
+    borderRadius: string;
   }
 }

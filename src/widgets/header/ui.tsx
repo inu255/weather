@@ -1,7 +1,5 @@
 import styled from "styled-components";
 import { BiMenuAltLeft } from "react-icons/bi";
-// import { IconContext } from "react-icons";
-
 export function Header() {
   return (
     <HeaderWrapper>

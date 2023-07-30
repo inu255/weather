@@ -1,27 +1,17 @@
-import Weather from "~pages/weather";
+import Home from "~pages/home";
 import Layout from "./with-layout";
 
 import "normalize.css";
-import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./global-styles";
-
-const theme = {
-  colors: {
-    yellow: "#FFE142",
-    blue: "#42C6FF",
-    pink: "#FF64D4",
-    white: "#FFF",
-    black: "#000",
-  },
-};
+import Theme from "./with-theme";
 
 export default function App() {
   return (
-    <ThemeProvider theme={theme}>
+    <Theme>
       <GlobalStyles />
       <Layout>
-        <Weather />
+        <Home />
       </Layout>
-    </ThemeProvider>
+    </Theme>
   );
 }

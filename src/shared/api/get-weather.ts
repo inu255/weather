@@ -1,6 +1,6 @@
 // const API_KEY = import.meta.env.VITE_API_KEY;
 
-export default function Weather() {
+export function useGetWeather() {
   // useEffect(() => {
   //   const url =
   //     "https://visual-crossing-weather.p.rapidapi.com/forecast?aggregateHours=24&location=Novosibirsk&contentType=json&unitGroup=metric&shortColumnNames=0";
@@ -11,7 +11,6 @@ export default function Weather() {
   //       "X-RapidAPI-Host": "visual-crossing-weather.p.rapidapi.com",
   //     },
   //   };
-
   //   (async () => {
   //     try {
   //       const response = await fetch(url, options);
@@ -22,6 +21,4 @@ export default function Weather() {
   //     }
   //   })();
   // }, []);
-
-  return <div>Weather</div>;
 }
