@@ -6,7 +6,7 @@ export function Header() {
       <MenuWrapper>
         <BiMenuAltLeft style={{ fontSize: 30 }} />
       </MenuWrapper>
-      <Heading>Novosibirsk</Heading>
+      <Heading>Новосибирск</Heading>
     </HeaderWrapper>
   );
 }

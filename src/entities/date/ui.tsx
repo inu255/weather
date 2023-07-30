@@ -1,7 +1,8 @@
 import styled from "styled-components";
+import { currentDate } from "./model";
 
 export function Date() {
-  return <DateWrapper>Friday, 20 January</DateWrapper>;
+  return <DateWrapper>{currentDate}</DateWrapper>;
 }
 
 const DateWrapper = styled.div`
