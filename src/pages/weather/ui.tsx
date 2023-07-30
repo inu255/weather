@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 
+const API_KEY = import.meta.env.VITE_API_KEY;
+
 export default function Weather() {
   useEffect(() => {
     const url =
@@ -7,7 +9,7 @@ export default function Weather() {
     const options = {
       method: "GET",
       headers: {
-        "X-RapidAPI-Key": "355e7a3362msh0de78d8db9e7532p1f146ajsn62c23ec0abc2",
+        "X-RapidAPI-Key": API_KEY,
         "X-RapidAPI-Host": "visual-crossing-weather.p.rapidapi.com",
       },
     };
