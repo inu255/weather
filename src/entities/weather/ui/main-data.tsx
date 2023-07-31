@@ -1,12 +1,17 @@
+import { useStore } from "effector-react";
 import styled from "styled-components";
+import { $store } from "../model/store";
 
 type Props = {};
 
 export default function MainData({}: Props) {
+  const weather = useStore($store);
+  console.log(weather);
+
   return (
     <div>
       <Description>Солнечно</Description>
-      <Temperature>31°</Temperature>
+      <Temperature>{weather.mainTemperature.toString()}°</Temperature>
     </div>
   );
 }
