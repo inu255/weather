@@ -22,7 +22,7 @@ export function SecondaryData() {
 }
 
 const SecondaryWrapper = styled.div`
-  margin-top: 24px;
+  margin: 24px 48px 0 48px;
   background-color: ${({ theme }) => theme.colors.text};
   padding: 24px;
   border-radius: ${({ theme }) => theme.borderRadius};

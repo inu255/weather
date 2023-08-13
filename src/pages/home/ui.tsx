@@ -12,5 +12,5 @@ export default function Home() {
 }
 
 const PageWrapper = styled.div`
-  padding: 0 48px;
+  /* padding: 0 48px; */
 `;

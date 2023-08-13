@@ -5,6 +5,7 @@ import { SecondaryData } from "./secondary-data";
 import { useStore } from "effector-react";
 import { BiLoaderCircle } from "react-icons/bi";
 import styled, { keyframes } from "styled-components";
+import { Forecast } from "./forecast";
 
 export function Weather() {
   const loading = useStore(getFullWeatherDataNewApi.pending);
@@ -26,6 +27,7 @@ export function Weather() {
       <div>
         <MainData />
         <SecondaryData />
+        <Forecast />
       </div>
     );
   }
