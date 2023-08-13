@@ -6,7 +6,7 @@ export function Header() {
       <MenuWrapper>
         <BiMenuAltLeft style={{ fontSize: 30 }} />
       </MenuWrapper>
-      <Heading>Новосибирск</Heading>
+      <Heading>Novosibirsk</Heading>
     </HeaderWrapper>
   );
 }
@@ -31,6 +31,6 @@ const Heading = styled.h1`
 const MenuWrapper = styled.div`
   position: absolute;
   top: 50%;
-  left: 22px;
+  left: 32px;
   transform: translateY(-50%);
 `;

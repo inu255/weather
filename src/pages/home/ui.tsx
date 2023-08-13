@@ -1,11 +1,16 @@
-import { Weather } from "src/entities/weather";
 import { Date } from "src/entities/date";
+import { Weather } from "src/entities/weather";
+import styled from "styled-components";
 
 export default function Home() {
   return (
-    <div>
+    <PageWrapper>
       <Date />
       <Weather />
-    </div>
+    </PageWrapper>
   );
 }
+
+const PageWrapper = styled.div`
+  padding: 0 48px;
+`;
