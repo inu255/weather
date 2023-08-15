@@ -1,27 +1,19 @@
-# React + TypeScript + Vite
+# Простое приложение для погоды
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## TODO
 
-Currently, two official plugins are available:
+1) Выбор города
+2) Выбор языка
+3) Вёрстака под десктоп
+4) Более аккуратная вёрстка под телефоны
+5) Определение локации
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Ссылки
 
-## Expanding the ESLint configuration
+[Figma]([https://link-url-here.org](https://www.figma.com/file/crZkkzzuNlM5eXyYzOblu3/Untitled?type=design&node-id=0-1&mode=design&t=9g0hA3eW0OQkrsbE-0)https://www.figma.com/file/crZkkzzuNlM5eXyYzOblu3/Untitled?type=design&node-id=0-1&mode=design&t=9g0hA3eW0OQkrsbE-0)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+[Конфигуратор api](https://open-meteo.com/en/docs#latitude=55.0415&longitude=82.9346&hourly=temperature_2m,relativehumidity_2m,apparent_temperature,visibility,windspeed_10m&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min&current_weather=true&timezone=auto)
 
-- Configure the top-level `parserOptions` property like this:
+[Оригинал дизайна](https://dribbble.com/shots/20675054-Mobile-Weather-app)
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+[Geocoding API](https://openweathermap.org/api/geocoding-api)
