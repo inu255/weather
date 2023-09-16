@@ -1,7 +1,12 @@
+import { Cities } from "src/entities/cities";
 import styled from "styled-components";
 
 export function Sidebar() {
-  return <Wrapper>Sidebar</Wrapper>;
+  return (
+    <Wrapper>
+      <Cities />
+    </Wrapper>
+  );
 }
 
 const Wrapper = styled.aside`
