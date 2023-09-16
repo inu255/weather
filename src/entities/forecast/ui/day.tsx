@@ -13,7 +13,7 @@ type Props = { data: DayForecast } & DetailedHTMLProps<
 export function Day({ data }: Props) {
   return (
     <StyledDay>
-      {data.temperature}°
+      <div>{data.temperature}°</div>
       <WiDayCloudy />
       <StyledDate>{dayjs(data.date).format("D MM")}</StyledDate>
     </StyledDay>
@@ -25,6 +25,9 @@ const StyledDay = styled.div`
   border-radius: ${({ theme }) => theme.borderRadius};
   text-align: center;
   padding: 16px 15.5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   svg {
     font-size: 30px;

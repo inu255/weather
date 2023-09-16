@@ -15,11 +15,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: auto 230px minmax(320px, 1200px);
+  grid-template-columns: auto 230px minmax(320px, 1200px) auto;
   grid-template-rows: auto 1fr auto;
   grid-template-areas:
     ". sidebar header ."
-    ". sidebar main .";
+    ". sidebar main . ";
 
   @media screen and (max-width: 420px) {
     grid-template-columns: 1fr;
@@ -32,4 +32,7 @@ const Wrapper = styled.div`
 
 const Main = styled.main`
   grid-area: main;
+  /* @media screen and (max-width: 420px) {
+    width: 100%;
+  } */
 `;

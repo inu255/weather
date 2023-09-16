@@ -22,9 +22,11 @@ export function Forecast() {
 }
 
 const Wrapper = styled.div`
-  margin-top: 35px;
-  width: 100vw;
-  margin-bottom: 24px;
+  @media screen and (max-width: 420px) {
+    width: 100vw;
+    margin-top: 35px;
+    margin-bottom: 24px;
+  }
 `;
 
 const ForecastHeading = styled.div`
@@ -36,9 +38,14 @@ const Carousel = styled.div`
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 15px;
-  overflow-x: scroll;
-  width: calc(100vw - 96px);
+  /* width: 100%; */
   padding: 0 48px;
-  scrollbar-width: none;
   margin-top: -10px;
+  width: 300px;
+
+  @media screen and (max-width: 420px) {
+    width: calc(100vw - 96px);
+    overflow-x: scroll;
+    scrollbar-width: none;
+  }
 `;

@@ -69,3 +69,20 @@ export const getFullWeatherDataNewApi = createEffect(async (): Promise<Response>
   const res = await fetch(url, options);
   return res.json();
 });
+
+// const options = {
+//   enableHighAccuracy: true,
+//   timeout: 5000,
+//   maximumAge: 0,
+// };
+
+// function success(pos: any) {
+//   const crd = pos.coords;
+//   console.log(crd);
+// }
+
+// function error(err: any) {
+//   console.warn(`ERROR(${err.code}): ${err.message}`);
+// }
+
+// navigator.geolocation.getCurrentPosition(success, error, options);
