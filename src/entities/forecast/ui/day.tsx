@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { WiDayCloudy } from "react-icons/wi";
 
-import { DayForecast } from "../../model";
 import { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 import dayjs from "dayjs";
+import { DayForecast } from "../model";
 
 type Props = { data: DayForecast } & DetailedHTMLProps<
   ButtonHTMLAttributes<HTMLButtonElement>,

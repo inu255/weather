@@ -1,8 +1,8 @@
 import { useStore } from "effector-react";
 import { Heading } from "src/shared/ui/heading";
 import styled from "styled-components";
-import { $store } from "../../model";
 import { Day } from "./day";
+import { $store } from "../model";
 
 export function Forecast() {
   const { forecast } = useStore($store);

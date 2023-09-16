@@ -1,11 +1,9 @@
-import { Date } from "src/entities/date";
-import { Weather } from "src/entities/weather";
+import { Weather } from "src/widgets/weather";
 import styled from "styled-components";
 
 export default function Home() {
   return (
     <PageWrapper>
-      <Date />
       <Weather />
     </PageWrapper>
   );
