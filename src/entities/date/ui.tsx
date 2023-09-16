@@ -13,4 +13,5 @@ const DateWrapper = styled.div`
   padding: 6px 14px;
   font-size: 14px;
   margin: 0 auto;
+  font-weight: 300;
 `;

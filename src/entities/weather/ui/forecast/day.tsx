@@ -15,7 +15,7 @@ export function Day({ data }: Props) {
     <StyledDay>
       {data.temperature}°
       <WiDayCloudy />
-      {dayjs(data.date).format("D MMM")}
+      <StyledDate>{dayjs(data.date).format("D MM")}</StyledDate>
     </StyledDay>
   );
 }
@@ -24,9 +24,14 @@ const StyledDay = styled.div`
   border: 3px solid ${({ theme }) => theme.colors.text};
   border-radius: ${({ theme }) => theme.borderRadius};
   text-align: center;
-  padding: 20px 16px;
+  padding: 16px 15.5px;
 
   svg {
     font-size: 30px;
   }
+`;
+
+const StyledDate = styled.div`
+  font-size: 12px;
+  white-space: nowrap;
 `;

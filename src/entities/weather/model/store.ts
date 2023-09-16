@@ -53,6 +53,7 @@ export const $store = createStore<Weather>({
     windSpeed: Math.round(value.hourly.windspeed_10m[0]),
     humidity: Math.round(value.hourly.relativehumidity_2m[0]),
     visibility: Math.round(value.hourly.visibility[0] / 1000),
+    // TODO: forecast - separated entity
     forecast: value.daily.time.map((item, index) => ({
       date: item,
       temperature: Math.round(

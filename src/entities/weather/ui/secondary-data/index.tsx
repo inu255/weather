@@ -14,7 +14,7 @@ export function SecondaryData() {
           <h4>
             {item.value} {item.unit}
           </h4>
-          <div>{item.name}</div>
+          <WeatherCodeDescription>{item.name}</WeatherCodeDescription>
         </SecondaryItem>
       ))}
     </SecondaryWrapper>
@@ -47,4 +47,9 @@ const SecondaryItem = styled.div`
     margin: 12px 0 6px;
     font-size: 18px;
   }
+`;
+
+const WeatherCodeDescription = styled.div`
+  font-weight: 300;
+  font-size: 12px;
 `;

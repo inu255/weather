@@ -22,7 +22,7 @@ export function Forecast() {
 }
 
 const Wrapper = styled.div`
-  margin-top: 24px;
+  margin-top: 35px;
   width: 100vw;
   margin-bottom: 24px;
 `;
@@ -40,4 +40,5 @@ const Carousel = styled.div`
   width: calc(100vw - 96px);
   padding: 0 48px;
   scrollbar-width: none;
+  margin-top: -10px;
 `;

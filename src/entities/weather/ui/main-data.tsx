@@ -10,15 +10,15 @@ export function MainData() {
     <Wrapper>
       <Description>{weatherCode} code</Description>
       <Temperature>{mainTemperature.toString()}°</Temperature>
-      <Summary>
+      <div>
         <Heading>Daily Summary</Heading>
 
-        <div>
+        <SummaryDescription>
           Now it feels like {feelsLike.total}°, actually {mainTemperature}°.
           <br />
           Today the temperature is felt in the range from {feelsLike.min}° to {feelsLike.max}°
-        </div>
-      </Summary>
+        </SummaryDescription>
+      </div>
     </Wrapper>
   );
 }
@@ -30,15 +30,17 @@ const Wrapper = styled.div`
 const Description = styled.div`
   text-align: center;
   margin-top: 22px;
+  font-size: 18px;
 `;
 
 const Temperature = styled.div`
   text-align: center;
-  margin-top: 35px;
+  margin-top: 0px;
   font-weight: 400;
   font-size: 180px;
 `;
 
-const Summary = styled.div`
-  margin-top: 24px;
+const SummaryDescription = styled.div`
+  /* margin-top: 24px; */
+  margin-top: -10px;
 `;
