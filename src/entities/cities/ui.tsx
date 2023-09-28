@@ -2,9 +2,7 @@ import { ChangeEvent, useState } from "react";
 import { SearchInput } from "src/shared/ui/search-input";
 import styled from "styled-components";
 
-type Props = {};
-
-export function Cities({}: Props) {
+export function Cities() {
   const [search, setSearch] = useState<string>("");
 
   function handleSearch(event: ChangeEvent<HTMLInputElement>): void {

@@ -2,13 +2,14 @@ import { useStore } from "effector-react";
 import styled from "styled-components";
 import { $store } from "../model";
 import { Heading } from "src/shared/ui/heading";
+import { decodeWeatherString } from "src/shared/lib";
 
 export function MainData() {
   const { mainTemperature, weatherCode, feelsLike } = useStore($store);
 
   return (
     <Wrapper>
-      <Description>{weatherCode} code</Description>
+      <Description>{decodeWeatherString(weatherCode)}</Description>
       <Temperature>{mainTemperature.toString()}°</Temperature>
       <div>
         <Heading>Daily Summary</Heading>

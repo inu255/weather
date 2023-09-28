@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { WiDayCloudy } from "react-icons/wi";
 
-import { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 import dayjs from "dayjs";
+import { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
+import { decodeWeatherIcon } from "src/shared/lib";
 import { DayForecast } from "../model";
 
 type Props = { data: DayForecast } & DetailedHTMLProps<
@@ -15,8 +15,8 @@ export function Day({ data }: Props) {
     <StyledDay>
       <div>{data.temperature}°</div>
       {/* TODO: иконку подставь */}
-      <WiDayCloudy />
-      <StyledDate>{dayjs(data.date).format("D MM")}</StyledDate>
+      {decodeWeatherIcon(data.weatherCode)}
+      <StyledDate>{dayjs(data.date).format("DD.MM")}</StyledDate>
     </StyledDay>
   );
 }
