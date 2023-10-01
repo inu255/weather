@@ -1,6 +1,14 @@
 import styled from "styled-components";
 import { BiMenuAltLeft } from "react-icons/bi";
+import { useEffect } from "react";
+import { getCurrentPosition } from "src/features/get-location/api";
 export function Header() {
+  useEffect(() => {
+    (async () => {
+      await getCurrentPosition();
+    })();
+  }, []);
+
   return (
     <HeaderWrapper>
       <MenuWrapper>

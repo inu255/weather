@@ -14,7 +14,6 @@ export function Day({ data }: Props) {
   return (
     <StyledDay>
       <div>{data.temperature}°</div>
-      {/* TODO: иконку подставь */}
       {decodeWeatherIcon(data.weatherCode)}
       <StyledDate>{dayjs(data.date).format("DD.MM")}</StyledDate>
     </StyledDay>
