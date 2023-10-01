@@ -2,7 +2,12 @@ import styled from "styled-components";
 import { BiMenuAltLeft } from "react-icons/bi";
 import { useEffect } from "react";
 import { getCurrentPosition } from "src/features/get-location/api";
+import { $store } from "src/features/get-location";
+import { useStore } from "effector-react";
+
 export function Header() {
+  const { cityName } = useStore($store);
+
   useEffect(() => {
     (async () => {
       await getCurrentPosition();
@@ -14,7 +19,7 @@ export function Header() {
       <MenuWrapper>
         <BiMenuAltLeft style={{ fontSize: 30 }} />
       </MenuWrapper>
-      <Heading>Novosibirsk</Heading>
+      <Heading>{cityName}</Heading>
     </HeaderWrapper>
   );
 }

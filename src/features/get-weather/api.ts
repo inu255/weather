@@ -1,5 +1,21 @@
 import { createEffect } from "effector";
 
+export const getFullWeatherData = createEffect(
+  async ({ lat, lon }: GetFullWeatherData): Promise<Response> => {
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,relativehumidity_2m,apparent_temperature,visibility,windspeed_10m&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min&current_weather=true&timezone=auto`;
+    const options = {
+      method: "GET",
+    };
+    const res = await fetch(url, options);
+    return res.json();
+  }
+);
+
+export interface GetFullWeatherData {
+  lat: number;
+  lon: number;
+}
+
 export interface Response {
   latitude: number;
   longitude: number;
@@ -59,13 +75,3 @@ export interface Daily {
   apparent_temperature_max: number[];
   apparent_temperature_min: number[];
 }
-
-export const getFullWeatherDataNewApi = createEffect(async (): Promise<Response> => {
-  const url =
-    "https://api.open-meteo.com/v1/forecast?latitude=55.0415&longitude=82.9346&hourly=temperature_2m,relativehumidity_2m,apparent_temperature,visibility,windspeed_10m&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min&current_weather=true&timezone=auto";
-  const options = {
-    method: "GET",
-  };
-  const res = await fetch(url, options);
-  return res.json();
-});

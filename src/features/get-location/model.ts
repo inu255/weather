@@ -1,4 +1,5 @@
 import { createEvent, createStore } from "effector";
+import { getLocationName, setCoordinates } from "./api";
 
 type Location = {
   cityName: string;
@@ -16,8 +17,13 @@ export const $store = createStore<Location>({
   lon: 0,
   isLoading: false,
   isError: false,
-});
-// .on(getLocationName.doneData, (state, value) => ({
-//   ...state,
-
-// }));
+})
+  .on(getLocationName.doneData, (state, value) => ({
+    ...state,
+    cityName: value[0].name,
+  }))
+  .on(setCoordinates, (state, value) => ({
+    ...state,
+    lat: value.lat,
+    lon: value.lon,
+  }));

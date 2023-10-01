@@ -3,18 +3,20 @@ import { useEffect } from "react";
 import { Date } from "src/entities/date";
 import { Forecast } from "src/entities/forecast";
 import { MainData, SecondaryData } from "src/entities/weather-today";
-import { getFullWeatherDataNewApi } from "src/features/get-weather/api";
+import { getFullWeatherData } from "src/features/get-weather/api";
 import { Loader } from "src/shared/ui/loader";
 import styled from "styled-components";
+import { $store as getLocationStore } from "src/features/get-location";
 
 export function Weather() {
-  const loading = useStore(getFullWeatherDataNewApi.pending);
+  const loading = useStore(getFullWeatherData.pending);
+  const { lat, lon } = useStore(getLocationStore);
 
   useEffect(() => {
     (async () => {
-      await getFullWeatherDataNewApi();
+      await getFullWeatherData({ lat, lon });
     })();
-  }, []);
+  }, [lat, lon]);
 
   if (loading) {
     return <Loader />;

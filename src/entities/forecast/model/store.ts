@@ -2,7 +2,7 @@ import { createEvent, createStore } from "effector";
 // TODO: пришлось импортировать фичу в сущности, потому что в открытом api
 // данные для сегодняшней погоды (сущность) и прогноза (сущность) приходят вместе
 // придумать, как сделать dependency injection
-import { getFullWeatherDataNewApi } from "src/features/get-weather";
+import { getFullWeatherData } from "src/features/get-weather";
 
 export type DayForecast = {
   weatherCode: number;
@@ -19,7 +19,7 @@ export const $setMainTemperature = createEvent<number>();
 
 export const $store = createStore<Weather>({
   forecast: [],
-}).on(getFullWeatherDataNewApi.doneData, (state, value) => ({
+}).on(getFullWeatherData.doneData, (state, value) => ({
   ...state,
   forecast: value.daily.time.map((item, index) => ({
     date: item,
