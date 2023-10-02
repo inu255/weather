@@ -26,7 +26,11 @@ export function Weather() {
   if (loadingQuery || isLoadingGetLocation) {
     return <Loader />;
   } else if (isError) {
-    return "err";
+    return (
+      <Error>
+        <div>Unexpected Error</div>
+      </Error>
+    );
   } else {
     return (
       <div>
@@ -48,5 +52,14 @@ const Responsive = styled.div`
 
   @media screen and (max-width: 420px) {
     display: block;
+  }
+`;
+
+const Error = styled.div`
+  display: grid;
+  margin-top: 50px;
+  
+  div {
+    place-self: center;
   }
 `;
