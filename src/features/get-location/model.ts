@@ -1,5 +1,4 @@
 import { createEvent, createStore } from "effector";
-import { getLocationName, setCoordinates } from "./api";
 
 type Location = {
   cityName: string;
@@ -9,7 +8,32 @@ type Location = {
   isError: boolean;
 };
 
-export const $setMainTemperature = createEvent<number>();
+function success(pos: any) {
+  const crd = pos.coords;
+  console.log(crd);
+  setCoordinates({ lat: crd.latitude, lon: crd.longitude });
+}
+
+// function error(err: any) {
+//   console.warn(`ERROR(${err.code}): ${err.message}`);
+// }
+
+export const getCurrentPosition = () => {
+  navigator.geolocation.getCurrentPosition(success, () => {}, {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0,
+  });
+};
+
+export const setCoordinates = createEvent<LatAndLon>();
+
+
+export type LatAndLon = {
+  lat: number;
+  lon: number;
+};
+
 
 export const $store = createStore<Location>({
   cityName: "",
@@ -18,10 +42,6 @@ export const $store = createStore<Location>({
   isLoading: false,
   isError: false,
 })
-  .on(getLocationName.doneData, (state, value) => ({
-    ...state,
-    cityName: value[0].name,
-  }))
   .on(setCoordinates, (state, value) => ({
     ...state,
     lat: value.lat,
