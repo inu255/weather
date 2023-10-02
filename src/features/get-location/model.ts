@@ -2,24 +2,24 @@ import { createEvent, createStore } from "effector";
 
 type Location = {
   cityName: string;
-  lat: number;
-  lon: number;
+  latitude: number;
+  longitude: number;
   isLoading: boolean;
   isError: boolean;
 };
 
-function success(pos: any) {
-  const crd = pos.coords;
-  console.log(crd);
-  setCoordinates({ lat: crd.latitude, lon: crd.longitude });
-}
+export type LatAndLon = {
+  latitude: number;
+  longitude: number;
+};
 
-// function error(err: any) {
-//   console.warn(`ERROR(${err.code}): ${err.message}`);
-// }
+const success = (position: { coords: LatAndLon }) => {
+  const coords = position.coords;
+  setCoordinates({ latitude: coords.latitude, longitude: coords.longitude });
+};
 
 export const getCurrentPosition = () => {
-  navigator.geolocation.getCurrentPosition(success, () => {}, {
+  navigator.geolocation.getCurrentPosition(success, () => setCoordinatesError(), {
     enableHighAccuracy: true,
     timeout: 5000,
     maximumAge: 0,
@@ -27,23 +27,24 @@ export const getCurrentPosition = () => {
 };
 
 export const setCoordinates = createEvent<LatAndLon>();
-
-
-export type LatAndLon = {
-  lat: number;
-  lon: number;
-};
-
+export const setCoordinatesError = createEvent();
 
 export const $store = createStore<Location>({
   cityName: "",
-  lat: 0,
-  lon: 0,
-  isLoading: false,
+  latitude: 0,
+  longitude: 0,
+  isLoading: true,
   isError: false,
 })
   .on(setCoordinates, (state, value) => ({
     ...state,
-    lat: value.lat,
-    lon: value.lon,
+    latitude: value.latitude,
+    longitude: value.longitude,
+    isLoading: false,
+    isError: false,
+  }))
+  .on(setCoordinatesError, (state) => ({
+    ...state,
+    isLoading: false,
+    isError: true,
   }));

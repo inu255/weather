@@ -9,17 +9,24 @@ import styled from "styled-components";
 import { $store as getLocationStore } from "src/features/get-location";
 
 export function Weather() {
-  const loading = useStore(getFullWeatherData.pending);
-  const { lat, lon } = useStore(getLocationStore);
+  const loadingQuery = useStore(getFullWeatherData.pending);
+  const {
+    latitude,
+    longitude,
+    isLoading: isLoadingGetLocation,
+    isError,
+  } = useStore(getLocationStore);
 
   useEffect(() => {
     (async () => {
-      await getFullWeatherData({ lat, lon });
+      await getFullWeatherData({ latitude, longitude });
     })();
-  }, [lat, lon]);
+  }, [latitude, longitude]);
 
-  if (loading) {
+  if (loadingQuery || isLoadingGetLocation) {
     return <Loader />;
+  } else if (isError) {
+    return "err";
   } else {
     return (
       <div>
