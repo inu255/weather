@@ -23,10 +23,10 @@ export const setCoordinates = createEvent<LatAndLon>();
 
 export const getLocationName = createEffect(
   async ({ lat, lon }: LatAndLon): Promise<GetLocationNameResponse> => {
-    const apiKey =
-      import.meta.env.MODE === "development"
-        ? import.meta.env.VITE_GEOCODING_KEY
-        : process.env.POSITION_API_KEY;
+    const apiKey = '3d8a32dcb9343476b9c1f22b0d0da60e' // TODO: убрать в какие-то переменные на gh pages
+      // import.meta.env.MODE === "development"
+      //   ? import.meta.env.VITE_GEOCODING_KEY
+      //   : process.env.POSITION_API_KEY;
     // const url = `http://api.positionstack.com/v1/forward?access_key=${apiKey}&query=${lat},${lon}&output=json`;
     const url = `http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=1&appid=${apiKey}`;
     const options = {};
