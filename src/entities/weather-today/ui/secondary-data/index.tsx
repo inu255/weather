@@ -29,6 +29,11 @@ const SecondaryWrapper = styled.div`
   display: flex;
   justify-content: space-between;
 
+  @media screen and (max-width: 361px) {
+    margin-left: 24px;
+    margin-right: 24px;
+  }
+
   * {
     color: ${({ theme }) => theme.colors.primary};
   }

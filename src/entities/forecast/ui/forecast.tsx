@@ -32,6 +32,9 @@ const Wrapper = styled.div`
 const ForecastHeading = styled.div`
   width: calc(100% - 96px);
   margin: 0 48px;
+  @media screen and (max-width: 361px) {
+    margin: 0 24px;
+  }
 `;
 
 const Carousel = styled.div`
@@ -42,10 +45,18 @@ const Carousel = styled.div`
   padding: 0 48px;
   margin-top: -10px;
   width: 300px;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 
   @media screen and (max-width: 420px) {
     width: calc(100vw - 96px);
     overflow-x: scroll;
     scrollbar-width: none;
+  }
+
+  @media screen and (max-width: 361px) {
+    width: calc(100vw - 48px);
+    padding: 0 24px;
   }
 `;

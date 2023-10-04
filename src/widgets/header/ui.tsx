@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import { getCurrentPosition } from "src/features/get-location";
 
 export function Header() {
-
   useEffect(() => {
     (async () => {
       await getCurrentPosition();
@@ -26,6 +25,10 @@ const HeaderWrapper = styled.header`
   height: 60px;
   padding: 22px;
   position: relative;
+
+  @media screen and (max-width: 361px) {
+    padding: 22px 12px;
+  }
 `;
 
 const Heading = styled.h1`
@@ -43,4 +46,8 @@ const MenuWrapper = styled.div`
   top: 50%;
   left: 32px;
   transform: translateY(-50%);
+
+  @media screen and (max-width: 361px) {
+    left: 20px;
+  }
 `;
