@@ -24,8 +24,7 @@ const Wrapper = styled.div`
     svg {
       position: absolute;
       font-size: 20px;
-      padding-left: 16px;
-      padding-top: 10px;
+      padding: 13px 16px;
       transition: all 0.3s ease-in-out;
       z-index: 1;
     }
@@ -38,6 +37,7 @@ const Wrapper = styled.div`
     border: 3px solid ${({ theme }) => theme.colors.text};
     border-radius: ${({ theme }) => theme.borderRadius};
     /* width: 100%; */
+    max-width: 135px;
     transition: border, color 0.2s ease-in-out;
     background: transparent;
 

@@ -1,12 +1,20 @@
 import { Cities } from "src/entities/cities";
 import styled from "styled-components";
+import { $store } from "./model";
+import { useStore } from "effector-react";
 
 export function Sidebar() {
-  return (
-    <Wrapper>
-      <Cities />
-    </Wrapper>
-  );
+  const showSidebar = useStore($store);
+
+  if (showSidebar === true) {
+    return (
+      <Wrapper>
+        <Cities />
+      </Wrapper>
+    );
+  } else {
+    return <></>;
+  }
 }
 
 const Wrapper = styled.aside`
