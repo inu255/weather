@@ -1,40 +1,62 @@
 import React from "react";
 import styled from "styled-components";
 import { Header } from "src/widgets/header";
-import { Sidebar } from "src/widgets/sidebar";
+import { $store, Sidebar, triggerSidebar } from "src/widgets/sidebar";
+import { useStore } from "effector-react";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
+  const showSidebar = useStore($store);
+
   return (
     <Wrapper>
-      <Sidebar />
-      <Header />
-      <Main>{children}</Main>
+      <div className={showSidebar === true ? "sidebar-shown" : "sidebar-hidden"}>
+        <Sidebar />
+        <Header triggerSidebar={triggerSidebar} />
+        <Main>{children}</Main>
+      </div>
     </Wrapper>
   );
 }
 
 const Wrapper = styled.div`
-  display: grid;
-  grid-template-columns: auto 230px minmax(320px, 1200px) auto;
-  /* grid-template-columns: auto minmax(320px, 1200px) auto; */
-  grid-template-rows: auto 1fr auto;
-  grid-template-areas:
-    ". sidebar header ."
-    ". sidebar main .";
-  /* ". header ."
-    ". main . "; */
-
-  @media screen and (max-width: 420px) {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
+  .sidebar-shown {
+    display: grid;
+    grid-template-columns: auto 230px minmax(320px, 1200px) auto;
+    grid-template-rows: auto 1fr auto;
     grid-template-areas:
-      "header"
-      "main";
+      ". sidebar header ."
+      ". sidebar main .";
+
+    @media screen and (max-width: 420px) {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr;
+      grid-template-areas:
+        "sidebar"
+        "sidebar";
+    }
+  }
+
+  .sidebar-hidden {
+    display: grid;
+    grid-template-columns: auto minmax(320px, 1200px) auto;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+      ". header ."
+      ". main .";
+
+    @media screen and (max-width: 420px) {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr;
+      grid-template-areas:
+        "header"
+        "main";
+    }
   }
 `;
 
 const Main = styled.main`
   grid-area: main;
+  z-index: 998;
   /* @media screen and (max-width: 420px) {
     width: 100%;
   } */

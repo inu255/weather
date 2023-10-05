@@ -23,6 +23,10 @@ export function Cities() {
 
 const Wrapper = styled.div`
   padding: 22px;
+  padding-top: 28px;
+  @media screen and (max-width: 420px) {
+    padding-top: 0;
+  }
 `;
 
 const StyledCities = styled.div`

@@ -3,7 +3,11 @@ import { BiMenuAltLeft } from "react-icons/bi";
 import { useEffect } from "react";
 import { getCurrentPosition } from "src/features/get-location";
 
-export function Header() {
+type Props = {
+  triggerSidebar: () => void;
+};
+
+export function Header({ triggerSidebar }: Props) {
   useEffect(() => {
     (async () => {
       await getCurrentPosition();
@@ -13,7 +17,7 @@ export function Header() {
   return (
     <HeaderWrapper>
       <MenuWrapper>
-        <BiMenuAltLeft style={{ fontSize: 30 }} />
+        <BiMenuAltLeft style={{ fontSize: 30 }} onClick={() => triggerSidebar()} />
       </MenuWrapper>
       <Heading>Your Location</Heading>
     </HeaderWrapper>

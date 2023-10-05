@@ -36,42 +36,18 @@ const Wrapper = styled.div`
     font-size: 14px;
     border: 3px solid ${({ theme }) => theme.colors.text};
     border-radius: ${({ theme }) => theme.borderRadius};
-    /* width: 100%; */
-    max-width: 135px;
-    transition: border, color 0.2s ease-in-out;
+    width: 100%;
+    /* max-width: 135px; */
+    /* transition: border, color 0.2s ease-in-out; */
     background: transparent;
-
-    /* :-webkit-autofill {
-      -webkit-text-fill-color: #fff;
-      box-shadow: 0 0 0px 1000px #222b36 inset;
-
-      :focus {
-        box-shadow: 0 0 0px 1000px #266798 inset;
-      }
-    } */
+    box-sizing: border-box;
 
     ::placeholder {
       color: ${({ theme }) => theme.colors.text};
     }
 
-    /* :hover {
-      border: 1px solid #ccc;
-    } */
-
     :focus {
       outline: 10;
     }
-
-    /* :focus,
-    :hover {
-      outline: 0;
-      border: 3px solid ${({ theme }) => theme.colors.text};
-      background: ${({ theme }) => theme.colors.text};
-      color: ${({ theme }) => theme.colors.primary};
-    }
-
-    :not(:hover) {
-      color: ${({ theme }) => theme.colors.text};
-    } */
   }
 `;
