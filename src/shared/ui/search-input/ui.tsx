@@ -9,7 +9,7 @@ export function SearchInput({ ...props }: Props) {
     <Wrapper>
       <div className="container">
         <BiSearch />
-        <input {...props} />
+        <input {...props} name='search'/>
       </div>
     </Wrapper>
   );
