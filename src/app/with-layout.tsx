@@ -8,15 +8,21 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const showSidebar = useStore($store);
 
   return (
-    <Wrapper className={showSidebar === true ? "sidebar-shown" : "sidebar-hidden"}>
+    <Wrapper
+      displayContent={window.innerWidth <= 420 && showSidebar === true ? "none" : "block"}
+      className={showSidebar === true ? "sidebar-shown" : "sidebar-hidden"}
+    >
       <Sidebar />
-      <Header triggerSidebar={triggerSidebar} />
-      <Main>{children}</Main>
+
+      <Header sidebarShown={showSidebar} triggerSidebar={triggerSidebar} />
+      <Main className={showSidebar ? "hide" : "show"}>{children}</Main>
     </Wrapper>
   );
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ displayContent: "none" | "block" }>`
+  /* display: displayContent; */
+
   &.sidebar-shown {
     display: grid;
     grid-template-columns: auto 230px minmax(320px, 1200px) auto;
@@ -58,4 +64,16 @@ const Main = styled.main`
   /* @media screen and (max-width: 420px) {
     width: 100%;
   } */
+
+  &.show {
+    @media screen and (max-width: 420px) {
+      display: inherit;
+    }
+  }
+
+  &.hide {
+    @media screen and (max-width: 420px) {
+      display: none;
+    }
+  }
 `;

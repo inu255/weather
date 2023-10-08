@@ -4,10 +4,11 @@ import { useEffect } from "react";
 import { getCurrentPosition } from "src/features/get-location";
 
 type Props = {
+  sidebarShown: boolean;
   triggerSidebar: () => void;
 };
 
-export function Header({ triggerSidebar }: Props) {
+export function Header({ sidebarShown, triggerSidebar }: Props) {
   useEffect(() => {
     (async () => {
       await getCurrentPosition();
@@ -15,9 +16,9 @@ export function Header({ triggerSidebar }: Props) {
   }, []);
 
   return (
-    <HeaderWrapper>
+    <HeaderWrapper className={sidebarShown ? "hide" : "show"}>
       <MenuWrapper onClick={() => triggerSidebar()}>
-        <BiMenuAltLeft  />
+        <BiMenuAltLeft />
       </MenuWrapper>
       <Heading>Your Location</Heading>
     </HeaderWrapper>
@@ -33,10 +34,20 @@ const HeaderWrapper = styled.header`
   grid-template-columns: 30px auto;
   grid-template-rows: 1fr;
 
- 
-
   @media screen and (max-width: 361px) {
     padding: 22px 24px;
+  }
+
+  &.show {
+    @media screen and (max-width: 420px) {
+      display: inherit;
+    }
+  }
+
+  &.hide {
+    @media screen and (max-width: 420px) {
+      display: none;
+    }
   }
 `;
 
@@ -59,7 +70,7 @@ const MenuWrapper = styled.div`
   }
 
   :hover {
-    cursor: pointer
+    cursor: pointer;
   }
 
   @media screen and (max-width: 361px) {
