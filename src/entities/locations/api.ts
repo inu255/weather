@@ -1,7 +1,7 @@
 import { createEffect } from "effector";
 
-export const searchCity = createEffect(
-  async ({ searchString }: SearchCityParams): Promise<SearchCityResponse> => {
+export const searchLocation = createEffect(
+  async ({ searchString }: SearchLocationParams): Promise<SearchLocationResponse> => {
     const url = `https://geocoding-api.open-meteo.com/v1/search?name=${searchString}&count=10&language=en&format=json`;
     const options = {
       method: "GET",
@@ -11,11 +11,11 @@ export const searchCity = createEffect(
   }
 );
 
-export interface SearchCityParams {
+export interface SearchLocationParams {
   searchString: string;
 }
 
-export interface SearchCityResponse {
+export interface SearchLocationResponse {
   results: Result[];
   generationtime_ms: number;
 }

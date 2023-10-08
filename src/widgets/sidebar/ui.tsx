@@ -1,4 +1,4 @@
-import { Cities } from "src/entities/cities";
+import { Locations } from "src/entities/locations";
 import styled from "styled-components";
 import { $store, triggerSidebar } from "./model";
 import { useStore } from "effector-react";
@@ -7,12 +7,16 @@ import { BiMenuAltLeft } from "react-icons/bi";
 export function Sidebar() {
   const showSidebar = useStore($store);
 
+  const hideSidebar = () => {
+    triggerSidebar(false);
+  };
+
   return (
     <Wrapper className={showSidebar === true ? "shown" : "hidden"}>
       <HideIcon>
         <BiMenuAltLeft onClick={() => triggerSidebar(!showSidebar)} />
       </HideIcon>
-      <Cities />
+      <Locations hideSidebar={hideSidebar} />
     </Wrapper>
   );
 }

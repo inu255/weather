@@ -2,9 +2,18 @@ import { ChangeEvent, useCallback, useState } from "react";
 import { SearchInput } from "src/shared/ui/search-input";
 import styled from "styled-components";
 import debounce from "lodash.debounce";
-import { searchCity } from "src/features/search-city";
+import { searchLocation } from "../api";
+import { SearchResults } from "./search-results";
+import { $store } from "../model";
+import { useStore } from "effector-react";
 
-export function Cities() {
+type Props = {
+  hideSidebar: () => void;
+};
+
+export function Locations({ hideSidebar }: Props) {
+  const { showResults } = useStore($store);
+
   const [search, setSearch] = useState<string>("");
 
   const updateSearchValue = useCallback(
@@ -13,7 +22,7 @@ export function Cities() {
   );
 
   const handleSearchCity = async (searchString: string) => {
-    await searchCity({ searchString });
+    await searchLocation({ searchString });
   };
 
   const handleSearch = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -25,11 +34,15 @@ export function Cities() {
     <Wrapper>
       <SearchInput value={search} onChange={handleSearch} placeholder="Type city name" />
 
-      <StyledCities>
-        {["Novosibirsk", "Samara", "Saint-Petersburg"].map((item, index) => (
-          <City key={index}>{item}</City>
-        ))}
-      </StyledCities>
+      {showResults ? (
+        <SearchResults hideSidebar={hideSidebar} />
+      ) : (
+        <StyledCities>
+          {["Novosibirsk", "Samara", "Saint-Petersburg"].map((item, index) => (
+            <City key={index}>{item}</City>
+          ))}
+        </StyledCities>
+      )}
     </Wrapper>
   );
 }

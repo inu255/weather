@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { BiMenuAltLeft } from "react-icons/bi";
 import { useEffect } from "react";
 import { getCurrentPosition } from "src/features/get-location";
+import { useStore } from "effector-react";
+import { $store } from "src/entities/locations";
 
 type Props = {
   sidebarShown: boolean;
@@ -9,6 +11,8 @@ type Props = {
 };
 
 export function Header({ sidebarShown, triggerSidebar }: Props) {
+  const { selectedLocation } = useStore($store);
+
   useEffect(() => {
     (async () => {
       await getCurrentPosition();
@@ -20,7 +24,7 @@ export function Header({ sidebarShown, triggerSidebar }: Props) {
       <MenuWrapper onClick={() => triggerSidebar()}>
         <BiMenuAltLeft />
       </MenuWrapper>
-      <Heading>Your Location</Heading>
+      <Heading>{selectedLocation.name}</Heading>
     </HeaderWrapper>
   );
 }
