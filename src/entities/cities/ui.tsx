@@ -1,13 +1,25 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useCallback, useState } from "react";
 import { SearchInput } from "src/shared/ui/search-input";
 import styled from "styled-components";
+import debounce from "lodash.debounce";
+import { searchCity } from "src/features/search-city";
 
 export function Cities() {
   const [search, setSearch] = useState<string>("");
 
-  function handleSearch(event: ChangeEvent<HTMLInputElement>): void {
+  const updateSearchValue = useCallback(
+    debounce((searchString: string) => handleSearchCity(searchString), 300),
+    []
+  );
+
+  const handleSearchCity = async (searchString: string) => {
+    await searchCity({ searchString });
+  };
+
+  const handleSearch = (event: ChangeEvent<HTMLInputElement>): void => {
     setSearch(event.target.value);
-  }
+    updateSearchValue(search);
+  };
 
   return (
     <Wrapper>
