@@ -1,4 +1,5 @@
 import { createEvent, createStore } from "effector";
+import { Coordinates } from "src/shared/model/types";
 
 type Location = {
   cityName: string;
@@ -8,12 +9,7 @@ type Location = {
   isError: boolean;
 };
 
-export type LatAndLon = {
-  latitude: number;
-  longitude: number;
-};
-
-const success = (position: { coords: LatAndLon }) => {
+const success = (position: { coords: Coordinates }) => {
   const coords = position.coords;
   setCoordinates({ latitude: coords.latitude, longitude: coords.longitude });
 };
@@ -26,7 +22,7 @@ export const getCurrentPosition = () => {
   });
 };
 
-export const setCoordinates = createEvent<LatAndLon>();
+export const setCoordinates = createEvent<Coordinates>();
 export const setCoordinatesError = createEvent();
 
 export const $store = createStore<Location>({

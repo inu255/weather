@@ -2,8 +2,17 @@ import styled from "styled-components";
 import { BiMenuAltLeft } from "react-icons/bi";
 import { useEffect } from "react";
 import { getCurrentPosition } from "src/features/get-location";
+import { useStore } from "effector-react";
+import { $store } from "src/entities/locations";
 
-export function Header() {
+type Props = {
+  sidebarShown: boolean;
+  triggerSidebar: () => void;
+};
+
+export function Header({ sidebarShown, triggerSidebar }: Props) {
+  const { selectedLocation } = useStore($store);
+
   useEffect(() => {
     (async () => {
       await getCurrentPosition();
@@ -11,11 +20,11 @@ export function Header() {
   }, []);
 
   return (
-    <HeaderWrapper>
-      <MenuWrapper>
-        <BiMenuAltLeft style={{ fontSize: 30 }} />
+    <HeaderWrapper className={sidebarShown ? "hide" : "show"}>
+      <MenuWrapper onClick={() => triggerSidebar()}>
+        <BiMenuAltLeft />
       </MenuWrapper>
-      <Heading>Your Location</Heading>
+      <Heading>{selectedLocation.name}</Heading>
     </HeaderWrapper>
   );
 }
@@ -23,11 +32,26 @@ export function Header() {
 const HeaderWrapper = styled.header`
   grid-area: header;
   height: 60px;
-  padding: 22px;
-  position: relative;
+  padding: 22px 48px;
+  /* position: relative; */
+  display: grid;
+  grid-template-columns: 30px auto;
+  grid-template-rows: 1fr;
 
   @media screen and (max-width: 361px) {
-    padding: 22px 12px;
+    padding: 22px 24px;
+  }
+
+  &.show {
+    @media screen and (max-width: 420px) {
+      display: inherit;
+    }
+  }
+
+  &.hide {
+    @media screen and (max-width: 420px) {
+      display: none;
+    }
   }
 `;
 
@@ -35,19 +59,25 @@ const Heading = styled.h1`
   font-size: 24px;
   margin: 0;
   text-align: center;
-  position: absolute;
-  top: 50%;
-  right: 50%;
-  transform: translate(50%, -50%);
+  display: grid;
+  place-items: center;
+  margin-left: -30px;
 `;
 
 const MenuWrapper = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 32px;
-  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  z-index: 998;
+
+  svg {
+    font-size: 30px;
+  }
+
+  :hover {
+    cursor: pointer;
+  }
 
   @media screen and (max-width: 361px) {
-    left: 20px;
+    /* left: 20px; */
   }
 `;

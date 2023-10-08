@@ -7,21 +7,32 @@ import { getFullWeatherData } from "src/features/get-weather/api";
 import { Loader } from "src/shared/ui/loader";
 import styled from "styled-components";
 import { $store as getLocationStore } from "src/features/get-location";
+import { $store } from "src/entities/locations";
 
 export function Weather() {
   const loadingQuery = useStore(getFullWeatherData.pending);
   const {
-    latitude,
-    longitude,
+    latitude: detectedLatitude,
+    longitude: detectedLongitude,
     isLoading: isLoadingGetLocation,
     isError,
   } = useStore(getLocationStore);
 
+  const {
+    selectedLocation: { latitude: selectedLatitude, longitude: selectedLongitude },
+  } = useStore($store);
+
   useEffect(() => {
     (async () => {
-      await getFullWeatherData({ latitude, longitude });
+      await getFullWeatherData({ latitude: detectedLatitude, longitude: detectedLongitude });
     })();
-  }, [latitude, longitude]);
+  }, [detectedLatitude, detectedLongitude]);
+
+  useEffect(() => {
+    (async () => {
+      await getFullWeatherData({ latitude: selectedLatitude, longitude: selectedLongitude });
+    })();
+  }, [selectedLatitude, selectedLongitude]);
 
   if (loadingQuery || isLoadingGetLocation) {
     return <Loader />;
@@ -58,7 +69,7 @@ const Responsive = styled.div`
 const Error = styled.div`
   display: grid;
   margin-top: 50px;
-  
+
   div {
     place-self: center;
   }

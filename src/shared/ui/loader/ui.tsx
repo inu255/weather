@@ -23,9 +23,9 @@ const StyledLoader = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
-  animation: ${rotate} 1.7s linear infinite;
 
   svg {
     font-size: 50px;
+    animation: ${rotate} 1.7s linear infinite;
   }
 `;
