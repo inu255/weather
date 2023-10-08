@@ -7,18 +7,18 @@ import { BiMenuAltLeft } from "react-icons/bi";
 export function Sidebar() {
   const showSidebar = useStore($store);
 
-  if (showSidebar === true) {
-    return (
-      <Wrapper>
-        <HideIcon>
-          <BiMenuAltLeft onClick={() => triggerSidebar(!showSidebar)} />
-        </HideIcon>
-        <Cities />
-      </Wrapper>
-    );
-  } else {
-    return <></>;
-  }
+  // if (showSidebar === true) {
+  return (
+    <Wrapper>
+      <HideIcon>
+        <BiMenuAltLeft onClick={() => triggerSidebar(!showSidebar)} />
+      </HideIcon>
+      <Cities />
+    </Wrapper>
+  );
+  // } else {
+  //   return <></>;
+  // }
 }
 
 const Wrapper = styled.aside`

@@ -8,6 +8,7 @@ export function Cities() {
   function handleSearch(event: ChangeEvent<HTMLInputElement>): void {
     setSearch(event.target.value);
   }
+
   return (
     <Wrapper>
       <SearchInput value={search} onChange={handleSearch} placeholder="Type city name" />

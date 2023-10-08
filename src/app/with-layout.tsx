@@ -17,7 +17,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 }
 
 const Wrapper = styled.div`
-
   &.sidebar-shown {
     display: grid;
     grid-template-columns: auto 230px minmax(320px, 1200px) auto;
@@ -25,7 +24,6 @@ const Wrapper = styled.div`
     grid-template-areas:
       ". sidebar header ."
       ". sidebar main .";
-
 
     @media screen and (max-width: 420px) {
       grid-template-columns: 1fr;
