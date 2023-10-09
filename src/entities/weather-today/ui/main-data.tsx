@@ -26,9 +26,18 @@ export function MainData() {
 
 const Wrapper = styled.div`
   padding: 0 48px;
+
+  @media screen and (min-width: 420px) {
+    br {
+    display: none;
+  }
+  }
+
   @media screen and (max-width: 361px) {
     padding: 0 24px;
   }
+
+
 `;
 
 const Description = styled.div`

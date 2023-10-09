@@ -8,7 +8,9 @@ export function Sidebar() {
   const showSidebar = useStore($store);
 
   const hideSidebar = () => {
-    triggerSidebar(false);
+    if (window.innerWidth < 420) {
+      triggerSidebar(false);
+    }
   };
 
   return (

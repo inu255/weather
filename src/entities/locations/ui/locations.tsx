@@ -4,7 +4,7 @@ import styled from "styled-components";
 import debounce from "lodash.debounce";
 import { searchLocation } from "../api";
 import { SearchResults } from "./search-results";
-import { $store } from "../model";
+import { $store, setShowResults } from "../model";
 import { useStore } from "effector-react";
 
 type Props = {
@@ -30,9 +30,14 @@ export function Locations({ hideSidebar }: Props) {
     updateSearchValue(search);
   };
 
+  const handleClear = () => {
+    setSearch('');
+    setShowResults(false)
+  }
+
   return (
     <Wrapper>
-      <SearchInput value={search} onChange={handleSearch} placeholder="Type city name" />
+      <SearchInput value={search} onChange={handleSearch} placeholder="Type city name" onClear={handleClear}/>
 
       {showResults ? (
         <SearchResults hideSidebar={hideSidebar} />

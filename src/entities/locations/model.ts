@@ -33,6 +33,10 @@ export const $store = createStore<CitiesStateType>({
     ...state,
     selectedLocation: { latitude: value.latitude, longitude: value.longitude, name: value.name },
   }))
+  .on(setShowResults, (state, value) => ({
+    ...state,
+    showResults: value,
+  }))
   .on(searchLocation.doneData, (state, value) => ({
     ...state,
     showResults: true,

@@ -52,6 +52,10 @@ const LocationItem = styled.div`
     color: ${({ theme }) => theme.colors.primary};
   }
 
+  &:hover {
+    cursor: pointer
+  }
+
   .main-info {
     font-size: 16px;
   }

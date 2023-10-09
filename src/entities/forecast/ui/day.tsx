@@ -29,6 +29,14 @@ const StyledDay = styled.div`
   flex-direction: column;
   align-items: center;
 
+  /* & > * {
+      font-size: 20px
+    }
+
+  @media screen and (min-width: 420px) {
+    gap: 21px
+  } */
+
   svg {
     font-size: 30px;
   }
