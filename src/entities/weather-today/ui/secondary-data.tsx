@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useStore } from "effector-react";
-import { $store } from "../../model";
-import { createSecondaryData } from "./data";
+import { $store } from "../model";
+import { createSecondaryData } from "../lib";
 
 export function SecondaryData() {
   const { windSpeed, humidity, visibility } = useStore($store);

@@ -31,24 +31,20 @@ export function Locations({ hideSidebar }: Props) {
   };
 
   const handleClear = () => {
-    setSearch('');
-    setShowResults(false)
-  }
+    setSearch("");
+    setShowResults(false);
+  };
 
   return (
     <Wrapper>
-      <SearchInput value={search} onChange={handleSearch} placeholder="Type city name" onClear={handleClear}/>
+      <SearchInput
+        value={search}
+        onChange={handleSearch}
+        placeholder="Type city name"
+        onClear={handleClear}
+      />
 
-      {showResults ? (
-        <SearchResults hideSidebar={hideSidebar} />
-      ) : (
-        // <StyledCities>
-        //   {["Novosibirsk", "Samara", "Saint-Petersburg"].map((item, index) => (
-        //     <City key={index}>{item}</City>
-        //   ))}
-        // </StyledCities>
-        <></>
-      )}
+      {showResults ? <SearchResults hideSidebar={hideSidebar} /> : <></>}
     </Wrapper>
   );
 }
@@ -60,16 +56,3 @@ const Wrapper = styled.div`
     padding-top: 0;
   }
 `;
-
-// const StyledCities = styled.div`
-//   display: flex;
-//   flex-direction: column;
-// `;
-
-// const City = styled.div`
-//   background-color: ${({ theme }) => theme.colors.text};
-//   color: ${({ theme }) => theme.colors.primary};
-//   border-radius: ${({ theme }) => theme.borderRadius};
-//   margin-top: 10px;
-//   padding: 16px 15.5px;
-// `;

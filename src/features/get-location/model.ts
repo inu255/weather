@@ -16,7 +16,7 @@ const getCurrentPosition = () => {
     },
     () => setCoordinatesError(),
     {
-      enableHighAccuracy: true,
+      // enableHighAccuracy: true,
       timeout: 5000,
       maximumAge: 0,
     }
@@ -26,8 +26,6 @@ const getCurrentPosition = () => {
 export const getCurrentPositionWithPermission = () => {
   if (navigator.geolocation) {
     navigator.permissions.query({ name: "geolocation" }).then((permissionStatus) => {
-      console.log(permissionStatus.state);
-
       if (permissionStatus.state === "granted") {
         getCurrentPosition();
       } else if (permissionStatus.state === "prompt") {
