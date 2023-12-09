@@ -9,17 +9,38 @@ type Location = {
   isError: boolean;
 };
 
-const success = (position: { coords: Coordinates }) => {
-  const coords = position.coords;
-  setCoordinates({ latitude: coords.latitude, longitude: coords.longitude });
+const getCurrentPosition = () => {
+  navigator.geolocation.getCurrentPosition(
+    ({ coords }: { coords: Coordinates }) => {
+      setCoordinates({ latitude: coords.latitude, longitude: coords.longitude });
+    },
+    () => setCoordinatesError(),
+    {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0,
+    }
+  );
 };
 
-export const getCurrentPosition = () => {
-  navigator.geolocation.getCurrentPosition(success, () => setCoordinatesError(), {
-    enableHighAccuracy: true,
-    timeout: 5000,
-    maximumAge: 0,
-  });
+export const getCurrentPositionWithPermission = () => {
+  if (navigator.geolocation) {
+    navigator.permissions.query({ name: "geolocation" }).then((permissionStatus) => {
+      console.log(permissionStatus.state);
+
+      if (permissionStatus.state === "granted") {
+        getCurrentPosition();
+      } else if (permissionStatus.state === "prompt") {
+        getCurrentPosition();
+      } else {
+        // Геолокация отключена или пользователь отказал в разрешении
+        setCoordinatesError();
+      }
+    });
+  } else {
+    // Браузер не поддерживает геолокацию
+    setCoordinatesError();
+  }
 };
 
 export const setCoordinates = createEvent<Coordinates>();

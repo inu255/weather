@@ -40,6 +40,8 @@ export function Weather() {
     return (
       <Error>
         <div>Unexpected Error</div>
+        <div>Try to enable Geolocation Service</div>
+        {/* TODO: включите жпс или типа того */}
       </Error>
     );
   } else {

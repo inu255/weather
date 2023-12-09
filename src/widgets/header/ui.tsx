@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { BiMenuAltLeft } from "react-icons/bi";
 import { useEffect } from "react";
-import { getCurrentPosition } from "src/features/get-location";
+import { getCurrentPositionWithPermission } from "src/features/get-location";
 import { useStore } from "effector-react";
 import { $store } from "src/entities/locations";
 
@@ -15,7 +15,7 @@ export function Header({ sidebarShown, triggerSidebar }: Props) {
 
   useEffect(() => {
     (async () => {
-      await getCurrentPosition();
+      await getCurrentPositionWithPermission();
     })();
   }, []);
 
