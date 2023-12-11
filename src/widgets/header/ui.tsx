@@ -1,7 +1,7 @@
 import { useStore } from "effector-react";
 import { useEffect } from "react";
 import { BiMenuAltLeft } from "react-icons/bi";
-import { $store } from "src/entities/locations";
+import { $store, selectLocation } from "src/entities/locations";
 import { setCoordinates } from "src/features/get-location";
 import { getLocationDataByIp } from "src/features/get-location/api";
 import styled from "styled-components";
@@ -17,8 +17,9 @@ export function Header({ sidebarShown, triggerSidebar }: Props) {
   useEffect(() => {
     (async () => {
       // await getCurrentPositionWithPermission();
-      await getLocationDataByIp().then((res: any) => {
+      await getLocationDataByIp().then((res) => {
         setCoordinates({ latitude: res.latitude, longitude: res.longitude });
+        selectLocation({ latitude: res.latitude, longitude: res.longitude, name: res.city });
       });
     })();
   }, []);
