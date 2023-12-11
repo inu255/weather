@@ -6,7 +6,7 @@ import { MainData, SecondaryData } from "src/entities/weather-today";
 import { getFullWeatherData } from "src/features/get-weather/api";
 import { Loader } from "src/shared/ui/loader";
 import styled from "styled-components";
-import { $store as getLocationStore } from "src/features/get-location";
+import { $store as getLocationStore } from "src/features/get-current-location";
 import { $store } from "src/entities/locations";
 
 export function Weather() {

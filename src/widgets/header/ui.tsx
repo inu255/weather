@@ -2,8 +2,8 @@ import { useStore } from "effector-react";
 import { useEffect } from "react";
 import { BiMenuAltLeft } from "react-icons/bi";
 import { $store, selectLocation } from "src/entities/locations";
-import { setCoordinates } from "src/features/get-location";
-import { getLocationDataByIp } from "src/features/get-location/api";
+import { setCoordinates } from "src/features/get-current-location";
+import { getLocationDataByIp } from "src/features/get-current-location/api";
 import styled from "styled-components";
 
 type Props = {
