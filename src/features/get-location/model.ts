@@ -9,37 +9,37 @@ type Location = {
   isError: boolean;
 };
 
-const getCurrentPosition = () => {
-  navigator.geolocation.getCurrentPosition(
-    ({ coords }: { coords: Coordinates }) => {
-      setCoordinates({ latitude: coords.latitude, longitude: coords.longitude });
-    },
-    () => setCoordinatesError(),
-    {
-      // enableHighAccuracy: true,
-      timeout: 5000,
-      maximumAge: 0,
-    }
-  );
-};
+// const getCurrentPosition = () => {
+//   navigator.geolocation.getCurrentPosition(
+//     ({ coords }: { coords: Coordinates }) => {
+//       setCoordinates({ latitude: coords.latitude, longitude: coords.longitude });
+//     },
+//     () => setCoordinatesError(),
+//     {
+//       // enableHighAccuracy: true,
+//       timeout: 5000,
+//       maximumAge: 0,
+//     }
+//   );
+// };
 
-export const getCurrentPositionWithPermission = () => {
-  if (navigator.geolocation) {
-    navigator.permissions.query({ name: "geolocation" }).then((permissionStatus) => {
-      if (permissionStatus.state === "granted") {
-        getCurrentPosition();
-      } else if (permissionStatus.state === "prompt") {
-        getCurrentPosition();
-      } else {
-        // Геолокация отключена или пользователь отказал в разрешении
-        setCoordinatesError();
-      }
-    });
-  } else {
-    // Браузер не поддерживает геолокацию
-    setCoordinatesError();
-  }
-};
+// export const getCurrentPositionWithPermission = () => {
+//   if (navigator.geolocation) {
+//     navigator.permissions.query({ name: "geolocation" }).then((permissionStatus) => {
+//       if (permissionStatus.state === "granted") {
+//         getCurrentPosition();
+//       } else if (permissionStatus.state === "prompt") {
+//         getCurrentPosition();
+//       } else {
+//         // Геолокация отключена или пользователь отказал в разрешении
+//         setCoordinatesError();
+//       }
+//     });
+//   } else {
+//     // Браузер не поддерживает геолокацию
+//     setCoordinatesError();
+//   }
+// };
 
 export const setCoordinates = createEvent<Coordinates>();
 export const setCoordinatesError = createEvent();

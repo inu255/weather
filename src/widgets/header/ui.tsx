@@ -1,9 +1,10 @@
-import styled from "styled-components";
-import { BiMenuAltLeft } from "react-icons/bi";
-import { useEffect } from "react";
-import { getCurrentPositionWithPermission } from "src/features/get-location";
 import { useStore } from "effector-react";
+import { useEffect } from "react";
+import { BiMenuAltLeft } from "react-icons/bi";
 import { $store } from "src/entities/locations";
+import { setCoordinates } from "src/features/get-location";
+import { getLocationDataByIp } from "src/features/get-location/api";
+import styled from "styled-components";
 
 type Props = {
   sidebarShown: boolean;
@@ -15,7 +16,10 @@ export function Header({ sidebarShown, triggerSidebar }: Props) {
 
   useEffect(() => {
     (async () => {
-      await getCurrentPositionWithPermission();
+      // await getCurrentPositionWithPermission();
+      await getLocationDataByIp().then((res: any) => {
+        setCoordinates({ latitude: res.lat, longitude: res.lon });
+      });
     })();
   }, []);
 
