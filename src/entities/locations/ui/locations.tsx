@@ -1,11 +1,12 @@
-import { ChangeEvent, useCallback, useState } from "react";
+import { useDebounce } from "@uidotdev/usehooks";
+import { useStore } from "effector-react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { SearchInput } from "src/shared/ui/search-input";
 import styled from "styled-components";
-import debounce from "lodash.debounce";
 import { searchLocation } from "../api";
-import { SearchResults } from "./search-results";
 import { $store, setShowResults } from "../model";
-import { useStore } from "effector-react";
+import { SearchResults } from "./search-results";
+import { Loader } from "src/shared/ui/loader";
 
 type Props = {
   hideSidebar: () => void;
@@ -13,21 +14,25 @@ type Props = {
 
 export function Locations({ hideSidebar }: Props) {
   const { showResults } = useStore($store);
-
   const [search, setSearch] = useState<string>("");
+  const [isLoading, setIsLoading] = useState(false);
+  const debouncedSearch = useDebounce(search, 300);
 
-  const updateSearchValue = useCallback(
-    debounce((searchString: string) => handleSearchCity(searchString), 300),
-    []
-  );
+  useEffect(() => {
+    const searchLocationWithDebounce = async () => {
+      setIsLoading(true);
+      if (debouncedSearch) {
+        await searchLocation({ searchString: debouncedSearch });
+      }
 
-  const handleSearchCity = async (searchString: string) => {
-    await searchLocation({ searchString });
-  };
+      setIsLoading(false);
+    };
+
+    searchLocationWithDebounce();
+  }, [debouncedSearch]);
 
   const handleSearch = (event: ChangeEvent<HTMLInputElement>): void => {
     setSearch(event.target.value);
-    updateSearchValue(search);
   };
 
   const handleClear = () => {
@@ -43,8 +48,14 @@ export function Locations({ hideSidebar }: Props) {
         placeholder="Type city name"
         onClear={handleClear}
       />
-
-      {showResults ? <SearchResults hideSidebar={hideSidebar} /> : <></>}
+      {isLoading === true && showResults === false ? (
+        <CenteredLoader>
+          <Loader />
+        </CenteredLoader>
+      ) : (
+        <></>
+      )}
+      {showResults === true ? <SearchResults hideSidebar={hideSidebar} /> : <></>}
     </Wrapper>
   );
 }
@@ -55,4 +66,9 @@ const Wrapper = styled.div`
   @media screen and (max-width: 420px) {
     padding-top: 0;
   }
+`;
+
+const CenteredLoader = styled.div`
+  position: relative;
+  height: 200px;
 `;

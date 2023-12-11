@@ -39,8 +39,9 @@ export const $store = createStore<CitiesStateType>({
   }))
   .on(searchLocation.doneData, (state, value) => ({
     ...state,
+    // showResults: value.results?.length > 0 ? true : false,
     showResults: true,
-    locations: value.results.map((item) => ({
+    locations: value.results?.map((item) => ({
       id: item.id.toString(),
       name: item.name,
       latitude: item.latitude,

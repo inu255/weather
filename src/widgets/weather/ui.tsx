@@ -35,13 +35,17 @@ export function Weather() {
   }, [selectedLatitude, selectedLongitude]);
 
   if (loadingQuery || isLoadingGetLocation) {
-    return <Loader />;
+    return (
+      <CenteredLoader>
+        {/* <div> */}
+        <Loader />
+        {/* </div> */}
+      </CenteredLoader>
+    );
   } else if (isError) {
     return (
       <Error>
         <div>Unexpected Error</div>
-        <div>Try to enable Geolocation Service</div>
-        {/* TODO: включите жпс или типа того */}
       </Error>
     );
   } else {
@@ -75,4 +79,9 @@ const Error = styled.div`
   div {
     place-self: center;
   }
+`;
+
+const CenteredLoader = styled.div`
+  position: relative;
+  height: 80vh;
 `;

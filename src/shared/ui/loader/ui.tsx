@@ -11,11 +11,11 @@ export function Loader() {
 
 const rotate = keyframes`
   from {
-    transform: translate(-50%, 50%) rotate(0deg);
+    transform: rotate(0deg);
   }
 
   to {
-    transform: translate(-50%, 50%) rotate(360deg);
+    transform: rotate(360deg);
   }
 `;
 
@@ -23,7 +23,7 @@ const StyledLoader = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
-
+  transform: translate(-50%, -50%);
   svg {
     font-size: 50px;
     animation: ${rotate} 1.7s linear infinite;

@@ -14,9 +14,12 @@ export function SearchResults({ hideSidebar }: Props) {
     hideSidebar();
   };
 
+  console.log(locations);
+
   return (
     <Wrapper>
-      {locations.map((item) => (
+      {locations === undefined ? "Location Doesn't Exist" : <></>}
+      {locations?.map((item) => (
         <LocationItem
           key={item.id}
           onClick={() =>
@@ -43,6 +46,7 @@ const Wrapper = styled.div`
   border-radius: ${({ theme }) => theme.borderRadius};
   display: flex;
   flex-direction: column;
+  color: ${({ theme }) => theme.colors.primary};
 `;
 
 const LocationItem = styled.div`
@@ -53,7 +57,7 @@ const LocationItem = styled.div`
   }
 
   &:hover {
-    cursor: pointer
+    cursor: pointer;
   }
 
   .main-info {
