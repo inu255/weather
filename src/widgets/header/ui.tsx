@@ -18,7 +18,7 @@ export function Header({ sidebarShown, triggerSidebar }: Props) {
     (async () => {
       // await getCurrentPositionWithPermission();
       await getLocationDataByIp().then((res: any) => {
-        setCoordinates({ latitude: res.lat, longitude: res.lon });
+        setCoordinates({ latitude: res.latitude, longitude: res.longitude });
       });
     })();
   }, []);
