@@ -37,9 +37,7 @@ export function Weather() {
   if (loadingQuery || isLoadingGetLocation) {
     return (
       <CenteredLoader>
-        {/* <div> */}
         <Loader />
-        {/* </div> */}
       </CenteredLoader>
     );
   } else if (isError) {
