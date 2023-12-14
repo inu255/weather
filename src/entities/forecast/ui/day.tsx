@@ -28,14 +28,13 @@ const StyledDay = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  /* & > * {
-      font-size: 20px
-    }
-
   @media screen and (min-width: 420px) {
-    gap: 21px
-  } */
+    justify-content: space-between;
+    height: auto;
+    font-size: 20px;
+    padding: 24px 15.5px;
+    gap: 5.5px;
+  }
 
   svg {
     font-size: 30px;
@@ -45,4 +44,8 @@ const StyledDay = styled.div`
 const StyledDate = styled.div`
   font-size: 12px;
   white-space: nowrap;
+
+  @media screen and (min-width: 420px) {
+    font-size: 20px;
+  }
 `;

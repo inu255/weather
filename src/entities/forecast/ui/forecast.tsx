@@ -25,7 +25,7 @@ const Wrapper = styled.div`
   @media screen and (min-width: 420px) {
     margin-top: 24px;
   }
-  
+
   @media screen and (max-width: 420px) {
     width: 100vw;
     margin-top: 35px;
@@ -44,6 +44,10 @@ const ForecastHeading = styled.div`
   @media screen and (max-width: 361px) {
     margin: 0 24px;
   }
+
+  @media screen and (min-width: 420px) {
+    display: none;
+  }
 `;
 
 const Carousel = styled.div`
@@ -51,7 +55,6 @@ const Carousel = styled.div`
   grid-template-columns: repeat(7, 1fr);
   gap: 15px;
   /* width: 100%; */
-  padding: 0 48px;
 
   ::-webkit-scrollbar {
     display: none;
@@ -63,6 +66,7 @@ const Carousel = styled.div`
     scrollbar-width: none;
     width: 318px;
     margin-top: -10px;
+    padding: 0 48px;
   }
 
   @media screen and (max-width: 361px) {

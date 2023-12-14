@@ -27,7 +27,7 @@ export const selectLocation = createEvent<SelectedData>();
 export const $store = createStore<CitiesStateType>({
   showResults: false,
   locations: [],
-  selectedLocation: { latitude: 0, longitude: 0, name: "Your location" },
+  selectedLocation: { latitude: 0, longitude: 0, name: "--" },
 })
   .on(selectLocation, (state, value) => ({
     ...state,

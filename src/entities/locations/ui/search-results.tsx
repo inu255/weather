@@ -14,8 +14,6 @@ export function SearchResults({ hideSidebar }: Props) {
     hideSidebar();
   };
 
-  console.log(locations);
-
   return (
     <Wrapper>
       {locations === undefined ? "Location Doesn't Exist" : <></>}
