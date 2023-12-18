@@ -1,6 +1,7 @@
 import { useStore } from "effector-react";
 import styled from "styled-components";
 import { $store, SelectedData, selectLocation } from "../model";
+import { useLocalStorage } from "@uidotdev/usehooks";
 
 type Props = {
   hideSidebar: () => void;
@@ -8,10 +9,22 @@ type Props = {
 
 export function SearchResults({ hideSidebar }: Props) {
   const { locations } = useStore($store);
+  const [savedLocations, saveLocations] = useLocalStorage<SelectedData[]>("savedLocations", []);
+  const [_, saveActiveLocation] = useLocalStorage<SelectedData>("activeLocation", undefined);
 
   const handleLocationChange = (location: SelectedData) => {
     selectLocation(location);
     hideSidebar();
+    const isSelectedLocationSaved = savedLocations.some(
+      (item) =>
+        item.latitude === location.latitude &&
+        item.longitude === location.longitude &&
+        item.name === location.name
+    );
+    if (isSelectedLocationSaved === false) {
+      saveLocations([...savedLocations, location]);
+    }
+    saveActiveLocation(location);
   };
 
   return (

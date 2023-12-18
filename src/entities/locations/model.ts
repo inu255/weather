@@ -50,3 +50,4 @@ export const $store = createStore<CitiesStateType>({
       region: item.admin1,
     })),
   }));
+console.log($store);

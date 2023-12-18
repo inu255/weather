@@ -7,12 +7,13 @@ import { searchLocation } from "../api";
 import { $store, setShowResults } from "../model";
 import { SearchResults } from "./search-results";
 import { Loader } from "src/shared/ui/loader";
+import { SavedLocations } from "./saved-locations";
 
 type Props = {
   hideSidebar: () => void;
 };
 
-export function Locations({ hideSidebar }: Props) {
+export const Locations = ({ hideSidebar }: Props) => {
   const { showResults } = useStore($store);
   const [search, setSearch] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false);
@@ -55,10 +56,10 @@ export function Locations({ hideSidebar }: Props) {
       ) : (
         <></>
       )}
-      {showResults === true ? <SearchResults hideSidebar={hideSidebar} /> : <></>}
+      {showResults === true ? <SearchResults hideSidebar={hideSidebar} /> : <SavedLocations />}
     </Wrapper>
   );
-}
+};
 
 const Wrapper = styled.div`
   padding: 22px;
