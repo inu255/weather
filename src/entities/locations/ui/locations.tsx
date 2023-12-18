@@ -4,7 +4,7 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { SearchInput } from "src/shared/ui/search-input";
 import styled from "styled-components";
 import { searchLocation } from "../api";
-import { $store, setShowResults } from "../model";
+import { $store, clearLocations, setShowResults } from "../model";
 import { SearchResults } from "./search-results";
 import { Loader } from "src/shared/ui/loader";
 import { SavedLocations } from "./saved-locations";
@@ -41,6 +41,12 @@ export const Locations = ({ hideSidebar }: Props) => {
     setShowResults(false);
   };
 
+  const hideSidebarAndClearSearchString = () => {
+    hideSidebar();
+    setSearch("");
+    clearLocations();
+  };
+
   return (
     <Wrapper>
       <SearchInput
@@ -56,7 +62,11 @@ export const Locations = ({ hideSidebar }: Props) => {
       ) : (
         <></>
       )}
-      {showResults === true ? <SearchResults hideSidebar={hideSidebar} /> : <SavedLocations />}
+      {isLoading === false && showResults === true ? (
+        <SearchResults hideSidebar={hideSidebarAndClearSearchString} />
+      ) : (
+        <SavedLocations />
+      )}
     </Wrapper>
   );
 };

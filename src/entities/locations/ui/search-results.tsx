@@ -2,15 +2,15 @@ import { useStore } from "effector-react";
 import styled from "styled-components";
 import { $store, SelectedData, selectLocation } from "../model";
 import { useLocalStorage } from "@uidotdev/usehooks";
+import { ListItem } from "src/shared/ui/list-item";
 
 type Props = {
   hideSidebar: () => void;
 };
 
-export function SearchResults({ hideSidebar }: Props) {
+export const SearchResults = ({ hideSidebar }: Props) => {
   const { locations } = useStore($store);
   const [savedLocations, saveLocations] = useLocalStorage<SelectedData[]>("savedLocations", []);
-  const [_, saveActiveLocation] = useLocalStorage<SelectedData>("activeLocation", undefined);
 
   const handleLocationChange = (location: SelectedData) => {
     selectLocation(location);
@@ -24,7 +24,6 @@ export function SearchResults({ hideSidebar }: Props) {
     if (isSelectedLocationSaved === false) {
       saveLocations([...savedLocations, location]);
     }
-    saveActiveLocation(location);
   };
 
   return (
@@ -38,18 +37,19 @@ export function SearchResults({ hideSidebar }: Props) {
               latitude: item.latitude,
               longitude: item.longitude,
               name: item.name,
+              extraInfo: `${item.country}${item.region ? `, ${item.region}` : ""}`,
             })
           }
         >
-          <div className="main-info">{item.name}</div>
-          <div className="secondary-info">
-            {item.country}, {item.region}
-          </div>
+          <ListItem
+            primaryText={item.name}
+            secondaryText={`${item.country}${item.region ? `, ${item.region}` : ""}`}
+          />
         </LocationItem>
       ))}
     </Wrapper>
   );
-}
+};
 
 const Wrapper = styled.div`
   padding: 11px 22px;
@@ -62,21 +62,4 @@ const Wrapper = styled.div`
 
 const LocationItem = styled.div`
   padding: 11px 0;
-
-  & > * {
-    color: ${({ theme }) => theme.colors.primary};
-  }
-
-  &:hover {
-    cursor: pointer;
-  }
-
-  .main-info {
-    font-size: 16px;
-  }
-
-  .secondary-info {
-    font-weight: 300;
-    font-size: 12px;
-  }
 `;

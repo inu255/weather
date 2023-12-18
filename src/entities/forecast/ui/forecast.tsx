@@ -36,6 +36,7 @@ const Wrapper = styled.div`
 const ForecastHeading = styled.div`
   width: calc(100% - 96px);
   margin: 0 48px;
+  margin-right: 48px; // !!!!!
 
   /* @media screen and (min-width: 420px) {
     display: none;

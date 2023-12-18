@@ -1,9 +1,10 @@
+import { CSSProperties } from "react";
 import styled from "styled-components";
 
-type Props = { children: JSX.Element | string };
+type Props = { children: JSX.Element | string; style?: CSSProperties };
 
-export function Heading({ children }: Props) {
-  return <StyledHeading>{children}</StyledHeading>;
+export function Heading({ children, style }: Props) {
+  return <StyledHeading style={style}>{children}</StyledHeading>;
 }
 
 const StyledHeading = styled.h3`
