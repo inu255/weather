@@ -1,24 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { getFullWeatherData } from "src/features/get-weather";
+import { decodeWeatherCode } from "src/shared/lib";
 import { ThemeProvider } from "styled-components";
 
-// const theme = {
-//   colors: {
-//     yellow: "#FFE142",
-//     blue: "#42C6FF",
-//     pink: "#FF64D4",
-//     white: "#FFF",
-//     black: "#000",
-//   },
-// };
-
-const yellow = {
+const commonStyles = {
   colors: {
-    primary: "#FFE142",
+    primary: "#FFF",
     text: "#000",
   },
   borderRadius: "12px",
 };
 
-export default function Theme({ children }: { children: React.ReactNode }) {
-  return <ThemeProvider theme={yellow}>{children}</ThemeProvider>;
-}
+const Theme = ({ children }: { children: React.ReactNode }) => {
+  const [theme, setTheme] = useState(commonStyles);
+  useEffect(() => {
+    getFullWeatherData.done.watch(({ result }) => {
+      const code = result.current_weather.weathercode;
+      setTheme((theme) => ({
+        ...theme,
+        colors: { ...theme.colors, primary: decodeWeatherCode(code).color },
+      }));
+    });
+  }, []);
+
+  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
+};
+
+export default Theme;

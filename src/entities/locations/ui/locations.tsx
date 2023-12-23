@@ -72,8 +72,15 @@ export const Locations = ({ hideSidebar }: Props) => {
 };
 
 const Wrapper = styled.div`
+  /* height: 100vh; */
   padding: 22px;
   padding-top: 28px;
+  padding-bottom: 0;
+
+  /* @media screen and (min-width: 420px) {
+    padding-bottom: 0;
+  } */
+
   @media screen and (max-width: 420px) {
     padding-top: 0;
   }

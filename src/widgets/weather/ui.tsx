@@ -9,7 +9,7 @@ import styled from "styled-components";
 import { $store as getLocationStore } from "src/features/get-current-location";
 import { $store } from "src/entities/locations";
 
-export function Weather() {
+export const Weather = () => {
   const loadingQuery = useStore(getFullWeatherData.pending);
   const {
     latitude: detectedLatitude,
@@ -58,7 +58,7 @@ export function Weather() {
       </div>
     );
   }
-}
+};
 
 const Responsive = styled.div`
   width: 100%;

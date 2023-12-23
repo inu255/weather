@@ -1,15 +1,15 @@
 import { useStore } from "effector-react";
+import { decodeWeatherCode } from "src/shared/lib";
+import { Heading } from "src/shared/ui/heading";
 import styled from "styled-components";
 import { $store } from "../model";
-import { Heading } from "src/shared/ui/heading";
-import { decodeWeatherString } from "src/shared/lib";
 
-export function MainData() {
+export const MainData = () => {
   const { mainTemperature, weatherCode, feelsLike } = useStore($store);
 
   return (
     <Wrapper>
-      <Description>{decodeWeatherString(weatherCode)}</Description>
+      <Description>{decodeWeatherCode(weatherCode).name}</Description>
       <Temperature>{mainTemperature.toString()}°</Temperature>
       <div>
         <Heading>Daily Summary</Heading>
@@ -22,22 +22,20 @@ export function MainData() {
       </div>
     </Wrapper>
   );
-}
+};
 
 const Wrapper = styled.div`
   padding: 0 48px;
 
   @media screen and (min-width: 420px) {
     br {
-    display: none;
-  }
+      display: none;
+    }
   }
 
   @media screen and (max-width: 361px) {
     padding: 0 24px;
   }
-
-
 `;
 
 const Description = styled.div`

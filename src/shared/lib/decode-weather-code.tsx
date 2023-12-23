@@ -11,106 +11,60 @@ import {
   WiSnow,
 } from "react-icons/wi";
 
-export function decodeWeatherString(code: number) {
-  switch (code) {
-    case 0:
-      return "Sunny";
-    case 1:
-      return "Mainly sunny";
-    case 2:
-      return "Partly cloudy";
-    case 3:
-      return "Overcast";
-    case 45:
-    case 48:
-      return "Fog";
-    case 51:
-    case 53:
-    case 55:
-      return "Drizzle";
-    case 56:
-    case 57:
-      return "Freezing drizzle";
-    case 61:
-      return "Slight rain";
-    case 63:
-      return "Moderate rain";
-    case 65:
-      return "Heavy rain";
-    case 66:
-    case 67:
-      return "Freezing rain";
-    case 71:
-      return "Slight snow fall";
-    case 73:
-      return "Moderate snow fall";
-    case 75:
-      return "Heavy snow fall";
-    case 77:
-      return "Snow grains";
-    case 80:
-      return "Slight rain showers";
-    case 81:
-      return "Moderate rain showers";
-    case 82:
-      return "Heavy rain showers";
-    case 85:
-      return "Slight snow showers";
-    case 86:
-      return "Heavy snow showers";
-    default:
-      return "Unknown weather code";
-  }
-}
+type WeatherInfo = {
+  name: string;
+  icon: React.ReactNode;
+  color: string;
+};
 
-export function decodeWeatherIcon(code: number) {
+export const decodeWeatherCode = (code: number): WeatherInfo => {
   switch (code) {
     case 0:
-      return <WiDaySunny />;
+      return { name: "Sunny", icon: <WiDaySunny />, color: "#FFE142" };
     case 1:
-      return <WiDaySunnyOvercast />;
+      return { name: "Mainly sunny", icon: <WiDaySunnyOvercast />, color: "#FFE142" };
     case 2:
-      return <WiDayCloudy />;
+      return { name: "Partly cloudy", icon: <WiDayCloudy />, color: "#adc3d2" };
     case 3:
-      return <WiCloud />;
+      return { name: "Overcast", icon: <WiCloud />, color: "#adc3d2" };
     case 45:
     case 48:
-      return <WiDayFog />;
+      return { name: "Fog", icon: <WiDayFog />, color: "#adc3d2" };
     case 51:
     case 53:
     case 55:
-      return <WiRainMix />;
+      return { name: "Drizzle", icon: <WiRainMix />, color: "#42C6FF" };
     case 56:
     case 57:
-      return <WiRainMix />;
+      return { name: "Freezing drizzle", icon: <WiRainMix />, color: "#42C6FF" };
     case 61:
-      return <WiRainMix />;
+      return { name: "Slight rain", icon: <WiRainMix />, color: "#42C6FF" };
     case 63:
-      return <WiRain />;
+      return { name: "Moderate rain", icon: <WiRain />, color: "#42C6FF" };
     case 65:
-      return <WiRain />;
+      return { name: "Heavy rain", icon: <WiRain />, color: "#42C6FF" };
     case 66:
     case 67:
-      return <WiRain />;
+      return { name: "Freezing rain", icon: <WiRain />, color: "#42C6FF" };
     case 71:
-      return <WiSnow />;
+      return { name: "Slight snow fall", icon: <WiSnow />, color: "#FF64D4" };
     case 73:
-      return <WiSnow />;
+      return { name: "Moderate snow fall", icon: <WiSnow />, color: "#FF64D4" };
     case 75:
-      return <WiSnow />;
+      return { name: "Heavy snow fall", icon: <WiSnow />, color: "#FF64D4" };
     case 77:
-      return <WiSnow />;
+      return { name: "Snow grains", icon: <WiSnow />, color: "#FF64D4" };
     case 80:
-      return <WiShowers />;
+      return { name: "Slight rain showers", icon: <WiShowers />, color: "#42C6FF" };
     case 81:
-      return <WiShowers />;
+      return { name: "Moderate rain showers", icon: <WiShowers />, color: "#42C6FF" };
     case 82:
-      return <WiShowers />;
+      return { name: "Heavy rain showers", icon: <WiShowers />, color: "#42C6FF" };
     case 85:
-      return <WiSnow />;
+      return { name: "Slight snow showers", icon: <WiSnow />, color: "#FF64D4" };
     case 86:
-      return <WiSnow />;
+      return { name: "Heavy snow showers", icon: <WiSnow />, color: "#FF64D4" };
     default:
-      return <WiAlien />;
+      return { name: "Unknown weather code", icon: <WiAlien />, color: "white" };
   }
-}
+};

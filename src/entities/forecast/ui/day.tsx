@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import dayjs from "dayjs";
 import { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
-import { decodeWeatherIcon } from "src/shared/lib";
+import { decodeWeatherCode } from "src/shared/lib";
 import { DayForecast } from "../model";
 
 type Props = { data: DayForecast } & DetailedHTMLProps<
@@ -10,15 +10,15 @@ type Props = { data: DayForecast } & DetailedHTMLProps<
   HTMLButtonElement
 >;
 
-export function Day({ data }: Props) {
+export const Day = ({ data }: Props) => {
   return (
     <StyledDay>
       <div>{data.temperature}°</div>
-      {decodeWeatherIcon(data.weatherCode)}
+      {decodeWeatherCode(data.weatherCode).icon}
       <StyledDate>{dayjs(data.date).format("DD.MM")}</StyledDate>
     </StyledDay>
   );
-}
+};
 
 const StyledDay = styled.div`
   border: 3px solid ${({ theme }) => theme.colors.text};
