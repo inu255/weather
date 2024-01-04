@@ -9,6 +9,7 @@ import styled from "styled-components";
 import { $store as getLocationStore } from "src/features/get-current-location";
 import { $store } from "src/entities/locations";
 
+// TODO: перенести потом это в pages/home
 export const Weather = () => {
   const loadingQuery = useStore(getFullWeatherData.pending);
   const {
