@@ -1,12 +1,13 @@
-import { useStore } from "effector-react";
 import { Heading } from "src/shared/ui/heading";
 import styled from "styled-components";
+import { DayForecast } from "../model";
 import { Day } from "./day";
-import { $store } from "../model";
 
-export function Forecast() {
-  const { forecast } = useStore($store);
+type Props = {
+  forecast: DayForecast[];
+};
 
+export const Forecast = ({ forecast }: Props) => {
   return (
     <Wrapper>
       <ForecastHeading>
@@ -19,7 +20,7 @@ export function Forecast() {
       </Carousel>
     </Wrapper>
   );
-}
+};
 
 const Wrapper = styled.div`
   @media screen and (min-width: 420px) {

@@ -1,13 +1,11 @@
 import styled from "styled-components";
-import { useStore } from "effector-react";
-import { $store } from "../model";
-import { createSecondaryData } from "../lib";
+import { createSecondaryData } from "./lib";
 
-export function SecondaryData() {
-  const { windSpeed, humidity, visibility } = useStore($store);
+type Props = { windSpeed: number; humidity: number; visibility: number };
 
+export const AtmosphericParameters = ({ windSpeed, humidity, visibility }: Props) => {
   return (
-    <SecondaryWrapper>
+    <Wrapper>
       {createSecondaryData(windSpeed, humidity, visibility).map((item) => (
         <SecondaryItem key={item.key}>
           {item.icon}
@@ -17,11 +15,11 @@ export function SecondaryData() {
           <WeatherCodeDescription>{item.name}</WeatherCodeDescription>
         </SecondaryItem>
       ))}
-    </SecondaryWrapper>
+    </Wrapper>
   );
-}
+};
 
-const SecondaryWrapper = styled.div`
+const Wrapper = styled.div`
   margin: 24px 48px 0 48px;
   background-color: ${({ theme }) => theme.colors.text};
   padding: 24px;

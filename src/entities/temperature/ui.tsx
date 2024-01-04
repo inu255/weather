@@ -1,16 +1,15 @@
-import { useStore } from "effector-react";
 import { decodeWeatherCode } from "src/shared/lib";
 import { Heading } from "src/shared/ui/heading";
 import styled from "styled-components";
-import { $store } from "../model";
+import { FeelsLike } from "../weather-today";
 
-export const MainData = () => {
-  const { mainTemperature, weatherCode, feelsLike } = useStore($store);
+type Props = { mainTemperature: number; weatherCode: number; feelsLike: FeelsLike };
 
+export const Temperature = ({ mainTemperature, weatherCode, feelsLike }: Props) => {
   return (
     <Wrapper>
       <Description>{decodeWeatherCode(weatherCode).name}</Description>
-      <Temperature>{mainTemperature.toString()}°</Temperature>
+      <StyledTemperature>{mainTemperature.toString()}°</StyledTemperature>
       <div>
         <Heading>Daily Summary</Heading>
 
@@ -44,7 +43,7 @@ const Description = styled.div`
   font-size: 18px;
 `;
 
-const Temperature = styled.div`
+const StyledTemperature = styled.div`
   text-align: center;
   margin-top: 0px;
   font-weight: 400;

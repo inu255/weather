@@ -1,13 +1,15 @@
 import { useStore } from "effector-react";
 import { useEffect } from "react";
+import { AtmosphericParameters } from "src/entities/atmospheric-parameters";
 import { Date } from "src/entities/date";
 import { Forecast } from "src/entities/forecast";
-import { MainData, SecondaryData } from "src/entities/weather-today";
+import { $store as locationStore } from "src/entities/locations";
+import { Temperature } from "src/entities/temperature";
+import { $store as getLocationStore } from "src/features/get-current-location";
 import { getFullWeatherData } from "src/features/get-weather/api";
 import { Loader } from "src/shared/ui/loader";
 import styled from "styled-components";
-import { $store as getLocationStore } from "src/features/get-current-location";
-import { $store } from "src/entities/locations";
+import { $store as weatherModel } from "./model";
 
 // TODO: перенести потом это в pages/home
 export const Weather = () => {
@@ -19,9 +21,12 @@ export const Weather = () => {
     isError,
   } = useStore(getLocationStore);
 
+  const { mainTemperature, weatherCode, feelsLike, windSpeed, humidity, visibility, forecast } =
+    useStore(weatherModel);
+
   const {
     selectedLocation: { latitude: selectedLatitude, longitude: selectedLongitude },
-  } = useStore($store);
+  } = useStore(locationStore);
 
   useEffect(() => {
     (async () => {
@@ -51,10 +56,18 @@ export const Weather = () => {
     return (
       <div>
         <Date />
-        <MainData />
+        <Temperature
+          feelsLike={feelsLike}
+          mainTemperature={mainTemperature}
+          weatherCode={weatherCode}
+        />
         <Responsive>
-          <SecondaryData />
-          <Forecast />
+          <AtmosphericParameters
+            humidity={humidity}
+            visibility={visibility}
+            windSpeed={windSpeed}
+          />
+          <Forecast forecast={forecast} />
         </Responsive>
       </div>
     );
