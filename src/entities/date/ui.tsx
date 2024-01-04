@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { currentDate } from "./model";
 
-export function Date() {
+export const Date = () => {
   return <DateWrapper>{currentDate}</DateWrapper>;
-}
+};
 
 const DateWrapper = styled.div`
   color: ${({ theme }) => theme.colors.primary};

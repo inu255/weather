@@ -4,7 +4,7 @@ import { $store, triggerSidebar } from "./model";
 import { useStore } from "effector-react";
 import { BiMenuAltLeft } from "react-icons/bi";
 
-export function Sidebar() {
+export const Sidebar = () => {
   const showSidebar = useStore($store);
 
   const hideSidebar = () => {
@@ -21,7 +21,7 @@ export function Sidebar() {
       <Locations hideSidebar={hideSidebar} />
     </Wrapper>
   );
-}
+};
 
 const Wrapper = styled.aside`
   grid-area: sidebar;

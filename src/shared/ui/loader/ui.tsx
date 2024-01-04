@@ -1,13 +1,13 @@
 import { BiLoaderCircle } from "react-icons/bi";
 import styled, { keyframes } from "styled-components";
 
-export function Loader() {
+export const Loader = () => {
   return (
     <StyledLoader>
       <BiLoaderCircle />
     </StyledLoader>
   );
-}
+};
 
 const rotate = keyframes`
   from {

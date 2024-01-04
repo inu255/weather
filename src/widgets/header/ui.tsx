@@ -11,7 +11,7 @@ type Props = {
   triggerSidebar: () => void;
 };
 
-export function Header({ sidebarShown, triggerSidebar }: Props) {
+export const Header = ({ sidebarShown, triggerSidebar }: Props) => {
   const { selectedLocation } = useStore($store);
 
   useEffect(() => {
@@ -32,7 +32,7 @@ export function Header({ sidebarShown, triggerSidebar }: Props) {
       <Heading>{selectedLocation.name}</Heading>
     </HeaderWrapper>
   );
-}
+};
 
 const HeaderWrapper = styled.header`
   grid-area: header;

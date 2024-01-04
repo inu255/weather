@@ -1,5 +1,6 @@
 import { createEvent, createStore } from "effector";
 import { DayForecast } from "src/entities/forecast";
+import { FeelsLike } from "src/entities/temperature";
 import { getFullWeatherData } from "src/features/get-weather";
 
 type Weather = {
@@ -10,12 +11,6 @@ type Weather = {
   humidity: number;
   visibility: number;
   forecast: DayForecast[];
-};
-
-export type FeelsLike = {
-  min: number;
-  max: number;
-  total: number;
 };
 
 export const $setMainTemperature = createEvent<number>();

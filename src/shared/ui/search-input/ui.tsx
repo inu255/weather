@@ -7,8 +7,7 @@ type Props = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputE
   onClear?: () => void;
 };
 
-export function SearchInput({ onClear, ...props }: Props) {
-  
+export const SearchInput = ({ onClear, ...props }: Props) => {
   return (
     <Wrapper>
       <div className="container">
@@ -19,14 +18,14 @@ export function SearchInput({ onClear, ...props }: Props) {
           className={props.value !== undefined && props.value !== "" ? "typed" : "untyped"}
         />
         {props.value !== undefined && props.value !== "" ? (
-          <CgCloseO className="close-icon" onClick={onClear}/>
+          <CgCloseO className="close-icon" onClick={onClear} />
         ) : (
           <></>
         )}
       </div>
     </Wrapper>
   );
-}
+};
 
 const Wrapper = styled.div`
   height: 65px;
@@ -49,7 +48,7 @@ const Wrapper = styled.div`
       padding: 13px 16px;
       transition: all 0.3s ease-in-out;
       z-index: 1;
-      cursor: pointer
+      cursor: pointer;
     }
   }
 

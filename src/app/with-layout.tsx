@@ -1,10 +1,10 @@
 import { useStore } from "effector-react";
-import React from "react";
+import { ReactNode } from "react";
 import { Header } from "src/widgets/header";
 import { $store, Sidebar, triggerSidebar } from "src/widgets/sidebar";
 import styled from "styled-components";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+const Layout = ({ children }: { children: ReactNode }) => {
   const showSidebar = useStore($store);
 
   return (
@@ -13,12 +13,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       className={showSidebar === true ? "sidebar-shown" : "sidebar-hidden"}
     >
       <Sidebar />
-
       <Header sidebarShown={showSidebar} triggerSidebar={triggerSidebar} />
       <Main className={showSidebar ? "hide" : "show"}>{children}</Main>
     </Wrapper>
   );
-}
+};
+
+export default Layout;
 
 const Wrapper = styled.div<{ displayContent: "none" | "block" }>`
   /* display: displayContent; */

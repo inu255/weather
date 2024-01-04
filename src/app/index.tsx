@@ -10,7 +10,7 @@ import "dayjs/locale/ru";
 
 dayjs.locale("ru");
 
-export default function App() {
+const App = () => {
   return (
     <Theme>
       <GlobalStyles />
@@ -19,4 +19,6 @@ export default function App() {
       </Layout>
     </Theme>
   );
-}
+};
+
+export default App;

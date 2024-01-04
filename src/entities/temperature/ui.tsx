@@ -1,7 +1,7 @@
 import { decodeWeatherCode } from "src/shared/lib";
 import { Heading } from "src/shared/ui/heading";
 import styled from "styled-components";
-import { FeelsLike } from "../weather-today";
+import { FeelsLike } from "./model";
 
 type Props = { mainTemperature: number; weatherCode: number; feelsLike: FeelsLike };
 
