@@ -653,17 +653,16 @@ Error generating stack: `+o.message+`
   grid-template-areas:
     ". sidebar header ."
     ". sidebar main .";
-
-  @media screen and (max-width: 420px) {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-  }
+  /* box-sizing: padding-box; */
 
   &.sidebar-shown {
     display: grid;
     grid-template-columns: auto 230px minmax(320px, 1200px) auto;
+    /* grid-template-columns: auto 230px 1210px auto; */
 
     @media screen and (max-width: 420px) {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr;
       grid-template-areas:
         "sidebar"
         "sidebar";
@@ -673,8 +672,11 @@ Error generating stack: `+o.message+`
   &.sidebar-hidden {
     display: grid;
     grid-template-columns: auto 0 minmax(320px, 1200px) auto;
+    /* grid-template-columns: auto 1210px auto; */
 
     @media screen and (max-width: 420px) {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr;
       grid-template-areas:
         "header"
         "main";
@@ -683,6 +685,9 @@ Error generating stack: `+o.message+`
 `,l3=J.main`
   grid-area: main;
   z-index: 998;
+  /* @media screen and (max-width: 420px) {
+    width: 100%;
+  } */
 
   &.show {
     @media screen and (max-width: 420px) {
