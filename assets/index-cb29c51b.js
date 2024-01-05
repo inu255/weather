@@ -648,20 +648,22 @@ Error generating stack: `+o.message+`
     font-size: 30px;
     transform: scaleX(-1);
   }
-`,i3=({children:e})=>{const t=Tt(hf);return C.jsxs(o3,{displayContent:window.innerWidth<=420&&t===!0?"none":"block",className:t===!0?"sidebar-shown":"sidebar-hidden",children:[C.jsx(t3,{}),C.jsx(J4,{sidebarShown:t,triggerSidebar:Ao}),C.jsx(l3,{className:t?"hide":"show",children:e})]})},o3=J.div`
-  /* display: displayContent; */
+`,i3=({children:e})=>{const t=Tt(hf);return C.jsxs(o3,{className:t===!0?"sidebar-shown":"sidebar-hidden",children:[C.jsx(t3,{}),C.jsx(J4,{sidebarShown:t,triggerSidebar:Ao}),C.jsx(l3,{className:t?"hide":"show",children:e})]})},o3=J.div`
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    ". sidebar header ."
+    ". sidebar main .";
+
+  @media screen and (max-width: 420px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+  }
 
   &.sidebar-shown {
     display: grid;
     grid-template-columns: auto 230px minmax(320px, 1200px) auto;
-    grid-template-rows: auto 1fr auto;
-    grid-template-areas:
-      ". sidebar header ."
-      ". sidebar main .";
 
     @media screen and (max-width: 420px) {
-      grid-template-columns: 1fr;
-      grid-template-rows: 1fr;
       grid-template-areas:
         "sidebar"
         "sidebar";
@@ -670,15 +672,9 @@ Error generating stack: `+o.message+`
 
   &.sidebar-hidden {
     display: grid;
-    grid-template-columns: auto minmax(320px, 1200px) auto;
-    grid-template-rows: auto 1fr auto;
-    grid-template-areas:
-      ". header ."
-      ". main .";
+    grid-template-columns: auto 0 minmax(320px, 1200px) auto;
 
     @media screen and (max-width: 420px) {
-      grid-template-columns: 1fr;
-      grid-template-rows: 1fr;
       grid-template-areas:
         "header"
         "main";
@@ -687,9 +683,6 @@ Error generating stack: `+o.message+`
 `,l3=J.main`
   grid-area: main;
   z-index: 998;
-  /* @media screen and (max-width: 420px) {
-    width: 100%;
-  } */
 
   &.show {
     @media screen and (max-width: 420px) {
