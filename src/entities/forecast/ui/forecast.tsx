@@ -62,11 +62,16 @@ const Carousel = styled.div`
     display: none;
   }
 
+  @media screen and (max-width: 1025px) and (min-width: 420px) {
+    margin-left: 48px;
+    margin-right: 48px;
+    margin-bottom: 48px;
+  }
+
   @media screen and (max-width: 420px) {
     width: calc(100vw - 96px);
     overflow-x: scroll;
     scrollbar-width: none;
-    width: 318px;
     margin-top: -10px;
     padding: 0 48px;
   }

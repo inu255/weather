@@ -7,13 +7,13 @@ export const AtmosphericParameters = ({ windSpeed, humidity, visibility }: Props
   return (
     <Wrapper>
       {createSecondaryData(windSpeed, humidity, visibility).map((item) => (
-        <SecondaryItem key={item.key}>
+        <ParameterItem key={item.key}>
           {item.icon}
           <h4>
             {item.value} {item.unit}
           </h4>
           <WeatherCodeDescription>{item.name}</WeatherCodeDescription>
-        </SecondaryItem>
+        </ParameterItem>
       ))}
     </Wrapper>
   );
@@ -32,6 +32,13 @@ const Wrapper = styled.div`
     margin-right: 24px;
   }
 
+  @media screen and (max-width: 1025px) and (min-width: 420px) {
+    width: fit-content;
+    gap: 100px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   * {
     color: ${({ theme }) => theme.colors.primary};
   }
@@ -43,7 +50,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const SecondaryItem = styled.div`
+const ParameterItem = styled.div`
   text-align: center;
 
   h4 {

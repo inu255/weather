@@ -79,7 +79,11 @@ const Responsive = styled.div`
   display: grid;
   grid-template-columns: 3fr 4fr;
 
-  @media screen and (max-width: 420px) {
+  /* @media screen and (max-width: 420px) {
+    display: block;
+  } */
+
+  @media screen and (max-width: 1025px) {
     display: block;
   }
 `;
